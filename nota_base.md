@@ -902,7 +902,6 @@ Main agent now synthesizes the summary into a user-facing response.
    ```typescript
    const agentStatus = useEventBus<AgentStatus>('agent:status:update');
    ```
-```
 
 **What was missing from the original prompt:**
 ```
