@@ -53,31 +53,14 @@ The wizard will guide you through:
 
 Subscribe now: https://z.ai/subscribe?ic=AT4ZFNNRCJ
 
-#### Step 3: Complete Setup with Z.AI
+#### Step 2B: Complete Setup with Z.AI
 
 After subscribing to Z.AI:
 
 1. **Create API Key** in your Z.AI dashboard
 2. **Configure Claude Code** following: https://docs.z.ai/devpack/tool/claude
 
-```bash
-# Set up with Z.AI API key
-claude config set api-key YOUR_ZAI_API_KEY
-claude config set endpoint https://api.z.ai/v1
-
-# Initialize in your project directory
-claude init
-
-# Configure model settings
-claude config set model claude-3-5-sonnet-20241022
-claude config set max-tokens 4096
-claude config set temperature 0.1
-
-# View current configuration
-claude config list
-```
-
-#### Step 4: Create Your First Project
+#### Step 3: Create Your First Project
 
 ```bash
 # Create new project directory

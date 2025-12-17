@@ -95,7 +95,7 @@ Think of LLM as a powerful auto-complete that breaks your sentences into pieces 
 
 #### Hallucinations Are Inevitable
 
-Recent research ([Xu et al., 2024](https://arxiv.org/abs/2401.11817)) proves mathematically that hallucinations cannot be completely eliminated because:
+Recent research ([Xu et al., 2024](https://arxiv.org/abs/2401.11817)) proves mathematically that hallucinations cannot be eliminated because:
 
 - **Gödel's Incompleteness applies**: LLMs cannot learn all computable functions
 - **Training data limitations**: Always incomplete, contains contradictions and errors
@@ -323,7 +323,7 @@ Test cases:
 6. **Constraints** - What NOT to change
 7. **Success criteria** - How to verify it works
 
-**Never assume agent knows:**
+**Never assume the agent knows:**
 - Your project structure
 - Which file you're talking about
 - What "better", "fix", "improve" means

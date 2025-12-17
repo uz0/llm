@@ -10,7 +10,7 @@ After completing this module, you will be able to:
 - Manage context effectively in long conversations
 - Implement context compression and summarization strategies
 - Monitor and control context pollution
-- Understand Claude API specific implementation details
+- Understand Claude API-specific implementation details
 
 ## Prerequisites
 
@@ -128,7 +128,6 @@ sequenceDiagram
     Note over U,M: Problem: Original prompt too vague<br/>Should have specified imperative plan<br/>with exact file paths and signatures
     end
 ```
-
 #### Real Example Breakdown
 
 Let's trace through an actual Claude Code interaction:
@@ -153,7 +152,7 @@ Let's trace through an actual Claude Code interaction:
 - Generates hidden tool call: `Read(PRPs/PRP-003-tui-implementation.md)`
 
 **Context at this point:**
-```
+```text
 [System Prompt: ~50k tokens]
 [User Message: "analyse implementation..." ~15 tokens]
 [Assistant Thinking: "I need to read PRP first..." ~50 tokens]
@@ -569,7 +568,7 @@ Claude creates artifact (separate context)
 - Timeouts on large tasks
 
 **Causes**:
-1. Very large context (>150k tokens)
+1. Context exceeding 150k tokens
 2. Complex tool chains (10+ tool calls)
 3. Sub-agent spawning overhead
 4. Large file reads (100k+ tokens)
@@ -688,4 +687,4 @@ After mastering context management:
 
 ---
 
-*This module combines practical context management techniques with Claude API specific implementation details. For more comprehensive information, see the original guide.*
+*This module combines practical context management techniques with Claude API-specific implementation details. For more comprehensive information, see the original guide.*

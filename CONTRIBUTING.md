@@ -110,9 +110,9 @@ Follow this proven structure for technical articles:
 Our reviewers evaluate contributions on:
 
 #### Technical Accuracy (40%)
-- Are all technical claims correct?
-- Do code examples work as described?
-- Are best practices followed?
+- All technical claims correct?
+- Code examples work as described?
+- Best practices followed?
 - Is the content up-to-date with current technologies?
 
 #### Educational Value (30%)
@@ -151,7 +151,7 @@ Our reviewers evaluate contributions on:
 ### Visual Elements
 - **Diagrams**: Use Mermaid syntax for flowcharts and sequence diagrams
 - **Images**: Optimize for web, include alt text
-- **Tables**: Use markdown tables for structured data
+- **Tables**: Use Markdown tables for structured data
 - **Callouts**: Use emojis and formatting for important information
 
 ## 📚 Content Templates
@@ -240,6 +240,6 @@ Contributors are recognized in:
 
 ---
 
-Thank you for helping make this course better for everyone! Your contributions help developers worldwide learn about LLM agents and build amazing things.
+Thank you for helping make this course better for everyone! Your contributions help developers worldwide learn about LLM agents and build impactful solutions.
 
 **Still have questions?** Open an issue or start a discussion, and we'll be happy to help!
