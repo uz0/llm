@@ -141,7 +141,7 @@ Let's trace through an actual Claude Code interaction:
 **Step 1: Initial Response + Hidden Command**
 
 **What you see:**
-```
+```text
 ⏺ I'll analyze the implementation details for PRP-003 TUI implementation.
   Let me first read the PRP document and then examine the current codebase
   to understand what has been implemented.
