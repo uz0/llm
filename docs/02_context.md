@@ -59,7 +59,7 @@ sequenceDiagram
 
 **1 token ≈ 4 characters** (for English text, approximate)
 
-```
+```text
 English:  ~4 characters = 1 token
           1000 characters ≈ 250 tokens
 
