@@ -139,7 +139,7 @@ BAD: "The login isn't working, please fix it"
 - What "not working" means (crash? wrong redirect? blank page?)
 - What framework/language (React? Vue? Plain JS?)
 
-**Why bad**:
+#### Why bad:
 - Agent has to guess which of 5 possible login implementations
 - No error message = agent can't diagnose root cause
 - No file path = agent will search entire codebase (slow, expensive)
@@ -170,7 +170,7 @@ Do not modify:
 - The form validation (already working)"
 ```
 
-**Why good**:
+#### Why good:
 - Exact file path provided (src/components/LoginForm.tsx)
 - Exact error message with line number
 - Reproduction steps clear
@@ -193,7 +193,7 @@ BAD: "Add validation to the form"
 - Where to display errors? (Inline? Top of form? Toast?)
 - When to validate? (On submit? On blur? On change?)
 
-**Why bad**:
+#### Why bad:
 - Agent doesn't know which form (could be 10+ forms in project)
 - No validation requirements = agent will guess (probably wrong)
 - No UX requirements = might create inconsistent experience
@@ -235,7 +235,7 @@ Do not modify:
 - Any other form fields"
 ```
 
-**Why good**:
+#### Why good:
 - Specific file and line numbers
 - Exact validation rules for each field
 - Exact error messages to display
@@ -258,7 +258,7 @@ BAD: "The API call is failing, help me debug it"
 - What's the expected response?
 - When does it fail? (Always? Sometimes? Specific conditions?)
 
-**Why bad**:
+#### Why bad:
 - Agent can't locate the failing API call
 - No error details = can't diagnose
 - Might be network issue, auth issue, data issue, code issue - agent has no clues
@@ -302,7 +302,7 @@ Test cases:
 3. Future date '2030-01-01' → should show error: 'Birth date cannot be in the future'"
 ```
 
-**Why good**:
+#### Why good:
 - Exact file, function, and line number
 - Complete error details (status, response body)
 - Shows actual vs expected data format

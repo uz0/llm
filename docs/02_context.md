@@ -132,13 +132,13 @@ sequenceDiagram
 
 Let's trace through an actual Claude Code interaction:
 
-**USER REQUEST**
+#### USER Request
 ```bash
 > analyse implementation details in our code according to
   prp/PRPs/PRP-003-tui-implementation.md
 ```
 
-**Step 1: Initial Response + Hidden Command**
+#### Step 1: Initial Response + Hidden Command
 
 **What you see:**
 ```text
@@ -160,7 +160,7 @@ Let's trace through an actual Claude Code interaction:
 Total: ~50,065 tokens
 ```
 
-**Step 2: Tool Execution**
+#### Step 2: Tool Execution
 
 **What you see:**
 ```
@@ -187,7 +187,7 @@ Total: ~65,065 tokens
 2. Automatic compaction triggers near limit
 3. Session ends
 
-**Step 3: Agent Decides to Use Sub-Agent**
+#### Step 3: Agent Decides to Use Sub-Agent
 
 **What you see:**
 ```
@@ -206,7 +206,7 @@ Total: ~65,065 tokens
 3. **Parallel work**: Multiple sub-agents can work simultaneously
 4. **Cost efficiency**: Main agent doesn't pay token cost for sub-agent's exploration
 
-**Step 4: Sub-Agent Execution**
+#### Step 4: Sub-Agent Execution
 
 **What you see:**
 ```
