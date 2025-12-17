@@ -183,30 +183,7 @@ You've learned [key concepts]. Next, try [related activity].
 
 ### Reference Template
 ```markdown
-# [Topic] Reference Guide
-
-Comprehensive guide to [topic], including best practices and common patterns.
-
-## Overview
-[Brief explanation of the topic]
-
-## API Reference
-### Method 1: [Method Name]
-```language
-// Example usage
-```
-
-**Parameters**: [Description]
-**Returns**: [Description]
-**Example**: [Example]
-
-## Best Practices
-1. [Practice 1]
-2. [Practice 2]
-
-## Common Pitfalls
-- [Mistake 1] - [How to avoid]
-- [Mistake 2] - [How to avoid]
+TBD
 ```
 
 ## 🚀 Getting Help
