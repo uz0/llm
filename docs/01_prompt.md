@@ -135,8 +135,8 @@ BAD: "The login isn't working, please fix it"
 #### What human knows but didn't share:
 - Which login? (Admin login? User login? OAuth login?)
 - What error message appears?
-- What file contains the login code?
-- What "not working" means (crash? wrong redirect? blank page?)
+- Which file contains the login code?
+- What does "not working" mean (crash? wrong redirect? blank page?)
 - What framework/language (React? Vue? Plain JS?)
 
 #### Why bad:
@@ -343,7 +343,7 @@ Test cases:
 >
 > **This is an illusion. Declarative is actually HARDER.**
 >
-> Why? Because when declarative prompts fail, you can't debug them. You don't know which step the agent got wrong. You don't know what assumptions it made. You just know the result is wrong.
+> Why? Because when declarative prompts fail, you can't debug them. One doesn't know which step the agent got wrong. You don't know what assumptions it made. You just know the result is wrong.
 >
 > With imperative instructions, you:
 > 1. **Learn LLM limitations** by hitting them explicitly
@@ -418,8 +418,8 @@ Think about:
 - What specific performance issues?
 - Which parts of the app?
 - What does "faster" mean (load time? response time? render time?)
-- What are the current metrics?
-- What are the target metrics?
+- Which are the current metrics?
+- Which are the target metrics?
 - What constraints exist?
 
 ---
