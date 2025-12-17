@@ -1,1 +1,1 @@
-docs/02_context.md
+CONTRIBUTING.md

@@ -1,1 +1,1 @@
-docs/01_prompt.md
+CONTRIBUTING.md
