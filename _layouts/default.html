@@ -8,6 +8,10 @@
     {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/dark-theme.css?v=" | append: site.github.build_revision | relative_url }}">
+
+    <!-- Mermaid.js for diagram rendering (fixes issue #8) -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -26,6 +30,46 @@
       </header>
       <section>
 
+      <!-- Initialize Mermaid diagrams (fixes issue #8) -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({
+              startOnLoad: true,
+              theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
+              themeVariables: {
+                darkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+                primaryColor: '#66b3ff',
+                primaryTextColor: '#1a1a1a',
+                primaryBorderColor: '#66b3ff',
+                lineColor: '#888',
+                secondaryColor: '#ff9999',
+                tertiaryColor: '#99ccff'
+              },
+              flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+              },
+              sequence: {
+                useMaxWidth: true,
+                wrap: true
+              }
+            });
+
+            // Handle theme changes for dynamic switching
+            if (window.matchMedia) {
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                mermaid.initialize({
+                  theme: e.matches ? 'dark' : 'default'
+                });
+                mermaid.init(undefined, '.mermaid');
+              });
+            }
+          }
+        });
+      </script>
+
       {{ content }}
 
       </section>
@@ -34,7 +78,9 @@
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
-    {% if site.google_analytics %}
+
+    <!-- Google Analytics (for issue #9) -->
+    {% if site.google_analytics and site.google_analytics != 'UA-XXXXXXXX-X' %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -42,6 +88,16 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', '{{ site.google_analytics }}', 'auto');
       ga('send', 'pageview');
+    </script>
+    {% endif %}
+
+    <!-- MinimalAnalytics alternative (for issue #9) -->
+    {% if site.minimal_analytics and site.minimal_analytics.enabled %}
+    <script src="https://cdn.jsdelivr.net/npm/minimal-analytics@0.1.5/dist/index.min.js"></script>
+    <script>
+      minimalAnalytics({
+        tracker: '{{ site.minimal_analytics.id }}'
+      });
     </script>
     {% endif %}
   </body>

@@ -65,5 +65,13 @@ theme: minima
 minima:
   skin: auto
 
-# Google Analytics (placeholder for issue #9)
+# Google Analytics (for issue #9)
+# To enable: replace UA-XXXXXXXX-X with your actual Google Analytics tracking ID
 google_analytics: UA-XXXXXXXX-X
+
+# MinimalAnalytics alternative (for issue #9)
+# A lightweight, privacy-focused analytics solution
+# To enable: set enabled to true and add your tracker ID from https://minimalanalytics.com/
+minimal_analytics:
+  enabled: false
+  id: ""  # Replace with your MinimalAnalytics tracker ID when enabled
