@@ -45,7 +45,7 @@ The wizard will guide you through:
 - Usage-based pricing
 
 **Option B: Z.AI Alternative (Recommended 💰)**
-- **Starting at just $3/month**
+- **Starting at just $3/month** *(✓ Verified December 2025)*
 - Full support for Claude Code, Cline, and 10+ top coding tools
 - Limited-time deal available
 
@@ -844,7 +844,7 @@ git push
 
 ### Using Context7 for Documentation Access
 
-[Context7](https://github.com/upstash/context7) provides up-to-date documentation for libraries and frameworks.
+[Context7](https://github.com/upstash/context7) provides up-to-date documentation for libraries and frameworks. *(✓ Configuration verified December 2025)*
 
 #### Installation
 

@@ -139,7 +139,7 @@ LLMCompiler uses directed acyclic graph ideas from compiler design for automatic
 7. Full result is passed to Joiner prompt:
    - either final response is formed
    - or new "thought" is added and plan sent for re-planning
-8. If needed, plan continuation is created (not completely new plan)
+8. If needed, plan continuation is created (not entirely new plan)
 9. Process repeats until Joiner determines sufficient information for user response
 
 ---

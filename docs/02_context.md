@@ -73,7 +73,7 @@ Code:     ~3.5 characters = 1 token (more efficient due to symbols)
           1000 characters ≈ 285 tokens
 ```
 
-#### Context Window Sizes (December 2024)
+#### Context Window Sizes (December 2024) *(✓ Pricing verified December 2025)*
 
 | Model                          | Context Window | Input Cost       | Output Cost      |
 |--------------------------------|----------------|------------------|------------------|
