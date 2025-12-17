@@ -163,7 +163,7 @@ Total: ~50,065 tokens
 #### Step 2: Tool Execution
 
 **What you see:**
-```
+```text
 ⏺ Read(PRPs/PRP-003-tui-implementation.md)
   ⎿  Read 1132 lines
 ```
