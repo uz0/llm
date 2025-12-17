@@ -95,7 +95,7 @@ After completing this module, you will be able to:
 
 ### Section 6: Tracing Basics with Langfuse
 - [ ] **Introduction to Observability**
-  - Why tracing matters for agents
+  - Why tracing is important for agents
   - Key metrics and insights
   - Debugging with traces
   - Performance monitoring
