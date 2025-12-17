@@ -51,14 +51,14 @@ The wizard will guide you through:
 
 🚀 **You've been invited to join the GLM Coding Plan!**
 
-Subscribe now: https://z.ai/subscribe?ic=AT4ZFNNRCJ
+Subscribe now: [https://z.ai/subscribe?ic=AT4ZFNNRCJ](https://z.ai/subscribe?ic=AT4ZFNNRCJ)
 
 #### Step 2B: Complete Setup with Z.AI
 
 After subscribing to Z.AI:
 
 1. **Create API Key** in your Z.AI dashboard
-2. **Configure Claude Code** following: https://docs.z.ai/devpack/tool/claude
+2. **Configure Claude Code** following: [https://docs.z.ai/devpack/tool/claude](https://docs.z.ai/devpack/tool/claude)
 
 #### Step 3: Create Your First Project
 

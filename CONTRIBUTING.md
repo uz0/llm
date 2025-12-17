@@ -130,8 +130,8 @@ Our reviewers evaluate contributions on:
 #### Completeness (10%)
 - Is the coverage comprehensive?
 - Are edge cases addressed?
-- Are prerequisites clearly stated?
-- Are next steps provided?
+- Prerequisites clearly stated?
+- Next steps provided?
 
 ## 🎨 Style Guide
 

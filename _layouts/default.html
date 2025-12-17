@@ -34,11 +34,12 @@
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           if (typeof mermaid !== 'undefined') {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             mermaid.initialize({
               startOnLoad: true,
-              theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
+              theme: prefersDark ? 'dark' : 'default',
               themeVariables: {
-                darkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+                darkMode: prefersDark,
                 primaryColor: '#66b3ff',
                 primaryTextColor: '#1a1a1a',
                 primaryBorderColor: '#66b3ff',

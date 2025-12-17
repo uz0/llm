@@ -145,7 +145,7 @@ Let's trace through an actual Claude Code interaction:
 ⏺ I'll analyze the implementation details for PRP-003 TUI implementation.
   Let me first read the PRP document and then examine the current codebase
   to understand what has been implemented.
-```text
+```
 
 #### What happens in context:
 - Agent decides it needs to read the file first
