@@ -1,0 +1,69 @@
+# Site settings
+title: LLM Agents Workflow Course
+description: Public course materials about LLM agents workflow by Unity Zone Zero team
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://llm.uz0.dev" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Kramdown settings for better code and math support
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+    span:
+      line_numbers: false
+
+# Include CSS files
+include:
+  - _pages
+  - assets
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - LICENSE
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
+  - .claude/
+  - .github/
+
+# Collections for organizing content
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Default settings for collections
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+
+# Theme settings
+theme: minima
+
+# Minima theme settings
+minima:
+  skin: auto
+
+# Google Analytics (placeholder for issue #9)
+google_analytics: UA-XXXXXXXX-X
