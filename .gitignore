@@ -2,6 +2,7 @@
 _site/
 .sass-cache/
 .jekyll-cache/
+build/
 
 # Ruby gems
 Gemfile

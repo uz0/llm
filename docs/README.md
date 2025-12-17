@@ -1,60 +1,34 @@
-# LLM Agents Workflow Course
+# LLM Agents Workflow Course - Documentation
 
-### Public course materials about LLM agents workflow by Unity Zone Zero team
+LLM Agents Workflow Course by Unity Zone Zero team. Each module builds upon previous concepts to provide a comprehensive learning path.
 
-## 🎯 Motivation
+## 📚 Course Modules
 
-Large Language Models have transformed how we approach software development, research, and problem-solving. However, working effectively with LLM agents requires understanding their fundamental nature, limitations, and best practices. This course bridges the gap between theoretical knowledge and practical application, providing developers with the skills needed to build robust, efficient, and reliable agent-based workflows.
+## [01_prompt](01_prompt.md)
+Learn the fundamentals of writing effective prompts that produce reliable, consistent results from LLMs. This module covers prompt engineering patterns, common pitfalls, and practical techniques for getting predictable outputs.
 
-The materials are designed to help you:
-- Understand the statistical nature of LLMs and their limitations
-- Master context management and token economics
-- Learn proven agent architectures and patterns
-- Develop practical skills with real-world examples
-- Build production-ready agent systems
+## [02_context](02_context.md)
+Master context window management, token economics, and optimization strategies. Understand how to efficiently manage LLM context, control costs, and prevent context pollution in long conversations and complex tasks.
 
-## 🚀 Quick Start
-**Start with** [HOME](docs/README.md) to get course info.
+## [03_claudecode](03_claudecode.md)
+Practical guide to using Claude Code CLI, sub-agent orchestration, and advanced workflows. Learn to install, configure, and effectively use Claude Code for development tasks with hands-on examples.
 
-## 🤝 Contributing
+## [04_baseagents](04_baseagents.md)
+Introduction to fundamental agent patterns and simple implementation strategies. Understand the basics of agent design, state management, error handling, and how to build your first functional agents.
 
-**After reading have questions?** Open an issue or start a discussion, and we'll be happy to help!
+## [B1_agents_architecture](B1_agents_architecture.md)
+In-depth analysis of production-ready agent architectures with performance comparisons. Explore advanced patterns like ReAct, Self-Ask, Tree of Thoughts, and comprehensive benchmarking results.
 
-We welcome contributions from the community! This is a living educational resource, and your input helps improve it.
+## 🚀 Learning Path
 
-Please read our **[Contributing Guidelines](CONTRIBUTING.md)** before making any contributions. The guidelines include:
+We recommend following the modules in order:
 
-- How to write high-quality technical articles
-- Content standards and review process
-- Code review requirements
-- Style guidelines and formatting requirements
+1. **Start with** [01_prompt](01_prompt.md) - Master prompt engineering fundamentals
+2. **Continue with** [02_context](02_context.md) - Understand context management
+3. **Practice with** [03_claudecode](03_claudecode.md) - Apply concepts using Claude Code
+4. **Build with** [04_baseagents](04_baseagents.md) - Create your first agents
+5. **Advanced topics** in [B1_agents_architecture](B1_agents_architecture.md) - Production-ready patterns
 
-All contributions must undergo review and meet our quality standards before being merged.
-
-## 📄 License
-
-This course material is **completely free** and open for everyone to use, modify, and contribute to. All course materials are released under the [Unlicense](LICENSE) - a public domain dedication.
-
-### Freedom and Openness
-- **Free to use**: All educational content is freely accessible
-- **Open for contribution**: Community contributions are welcome and encouraged
-- **Freedom to fork**: Anyone can fork and adapt the materials
-- **No restrictions**: Use for personal, educational, or commercial purposes
-
-### Contributing with Love
-This course is maintained with ❤️ by the **Unity Zone Zero team**. We believe in open education and community-driven knowledge sharing.
-
-### Usage Rights
-You are free to:
-- ✅ Use the materials for learning and teaching
-- ✅ Modify and adapt for your needs
-- ✅ Share with others
-- ✅ Use in commercial projects
-- ✅ Contribute improvements back to the community
-- ✅ Fork and create your own versions
-
-No attribution is required, though credit to the original project is appreciated when building upon these materials.
-
-## 🙏 Acknowledgments
-
-- **Sergei Parfenov** - Agent architecture analysis and comparative testing
+## 📖 Supporting Materials
+- **[PDF Version](B1_agents_architecture.pdf)** - Printable version of agent architecture analysis
+- **[Contributing Guidelines](../CONTRIBUTING.md)** - How to contribute to this course
