@@ -128,7 +128,7 @@ These examples show common mistakes where humans **omit critical information** t
 
 #### ❌ BAD PROMPT #1: Missing Context About Project Structure
 
-```
+```text
 BAD: "The login isn't working, please fix it"
 ```
 
@@ -150,7 +150,7 @@ BAD: "The login isn't working, please fix it"
 
 #### ✅ GOOD PROMPT #1: All Context Provided
 
-```
+```text
 GOOD: "Fix the authentication error in src/components/LoginForm.tsx.
 
 Error: 'Cannot read property userId of undefined' at line 47

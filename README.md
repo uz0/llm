@@ -1,6 +1,6 @@
 # LLM Agents Workflow Course
 
-**Public course materials about LLM agents workflow by Unity Zone Zero team**
+### Public course materials about LLM agents workflow by Unity Zone Zero team
 
 ## 🎯 Motivation
 
