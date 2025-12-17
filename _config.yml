@@ -12,9 +12,16 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# Kramdown settings for better code and math support
+# GitHub Pages specific settings
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
 kramdown:
   input: GFM
+  hard_wrap: false
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
@@ -37,7 +44,6 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - LICENSE
-  - README.md
   - AGENTS.md
   - CLAUDE.md
   - CONTRIBUTING.md
@@ -58,9 +64,8 @@ defaults:
     values:
       layout: "default"
 
-# Theme settings
-theme: minima
+# Theme settings (GitHub Pages supported theme)
+theme: jekyll-theme-minimal
 
-# Minima theme settings
-minima:
-  skin: auto
+# Minimal theme settings (GitHub Pages compatible)
+# No additional settings needed for GitHub Pages compatibility
