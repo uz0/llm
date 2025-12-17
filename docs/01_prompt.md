@@ -46,7 +46,8 @@ A **prompt** is your input message that instructs the LLM what to do. It can be:
 - A complex instruction: "Refactor this Python code to use async/await patterns"
 - A multi-part request with examples and constraints
 
-**Key principle**: Prompts should be specific, actionable, and include success criteria.
+#### Key principle
+Prompts should be specific, actionable, and include success criteria.
 
 ---
 
