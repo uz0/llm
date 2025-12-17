@@ -140,18 +140,18 @@ Let's trace through an actual Claude Code interaction:
 
 #### Step 1: Initial Response + Hidden Command
 
-**What you see:**
+#### What you see:
 ```text
 ⏺ I'll analyze the implementation details for PRP-003 TUI implementation.
   Let me first read the PRP document and then examine the current codebase
   to understand what has been implemented.
-```
+```text
 
-**What happens in context:**
+#### What happens in context:
 - Agent decides it needs to read the file first
 - Generates hidden tool call: `Read(PRPs/PRP-003-tui-implementation.md)`
 
-**Context at this point:**
+#### Context at this point:
 ```text
 [System Prompt: ~50k tokens]
 [User Message: "analyse implementation..." ~15 tokens]
@@ -162,18 +162,18 @@ Total: ~50,065 tokens
 
 #### Step 2: Tool Execution
 
-**What you see:**
+#### What you see:
 ```text
 ⏺ Read(PRPs/PRP-003-tui-implementation.md)
   ⎿  Read 1132 lines
 ```
 
-**What happens:**
+#### What happens:
 - File content loaded into context (full 1132 lines)
 - Context size increases significantly
 - Claude now has the full requirements document
 
-**Context now:**
+#### Context now:
 ```
 [System Prompt: ~50k tokens]
 [User Message: ~15 tokens]
@@ -189,13 +189,13 @@ Total: ~65,065 tokens
 
 #### Step 3: Agent Decides to Use Sub-Agent
 
-**What you see:**
+#### What you see:
 ```
 ⏺ Now I'll use the Task tool with a Plan subagent to analyze the TUI
   implementation details comprehensively.
 ```
 
-**What happens:**
+#### What happens:
 - Main agent realizes task is complex (needs to read many files)
 - Decides to spawn a **sub-agent with independent context**
 - Sub-agent gets its own fresh context window (doesn't inherit main agent's 65k tokens)
@@ -208,15 +208,15 @@ Total: ~65,065 tokens
 
 #### Step 4: Sub-Agent Execution
 
-**What you see:**
+#### What you see:
 ```
 ⏺ Plan(Analyze TUI implementation progress)
   ⎿  Done (20 tool uses · 80.1k tokens · 1m 4s)
 ```
 
-**What happens in sub-agent context:**
+#### What happens in sub-agent context:
 
-**Sub-agent receives:**
+#### Sub-agent receives:
 ```
 [Sub-agent System Prompt: "You are a code analysis expert..." ~5k tokens]
 [Task: "Analyze TUI implementation against PRP-003" ~100 tokens]
@@ -225,7 +225,7 @@ Total: ~65,065 tokens
 Total start: ~20,100 tokens
 ```
 
-**Sub-agent executes 20 tool calls:**
+#### Sub-agent executes 20 tool calls:
 1. `Read(src/tui/main.tsx)` - loads main TUI file (~8k tokens)
 2. `Read(src/tui/components/StatusBar.tsx)` - checks status bar (~3k tokens)
 3. `Read(src/tui/components/PRPList.tsx)` - checks PRP list (~4k tokens)
@@ -235,7 +235,7 @@ Total start: ~20,100 tokens
 
 **Sub-agent context grows to 80,100 tokens** with all the code it read.
 
-**Sub-agent performs analysis and generates SHORT SUMMARY:**
+#### Sub-agent performs analysis and generates SHORT SUMMARY:
 ```json
 {
   "status": "65% complete",
@@ -289,7 +289,7 @@ graph LR
 
 #### Solutions
 
-**Frequent clearing:**
+#### Frequent clearing:
 ```bash
 Task: "Implement authentication"
 → Work on it (multiple prompts, file reads)
@@ -301,7 +301,7 @@ Next task: "Add logging"
 → Clean slate, optimal performance
 ```
 
-**Use sub-agents for isolation:**
+#### Use sub-agents for isolation:
 ```bash
 > Use code-analyzer sub-agent to find performance issues in src/,
   then use optimizer sub-agent to fix them.
@@ -382,7 +382,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Claude keeps forgetting what we discussed"
 
-**Symptoms:**
+#### Symptoms:
 - Agent asks for information you already provided
 - Agent repeats previous suggestions
 - Agent doesn't remember earlier decisions
@@ -398,7 +398,7 @@ Claude creates artifact (separate context)
 5. Put critical information in CLAUDE.md file (always included)
 6. Re-state critical constraints at start of each prompt
 
-**Prevention:**
+#### Prevention:
 ```bash
 # Add to CLAUDE.md in project root:
 ## Critical Context (Always Remember)
@@ -413,7 +413,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent is doing things I didn't ask for"
 
-**Symptoms:**
+#### Symptoms:
 - Agent modifies files you didn't mention
 - Agent changes code style unexpectedly
 - Agent adds features you didn't request
@@ -454,7 +454,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent gives wrong/outdated information"
 
-**Symptoms:**
+#### Symptoms:
 - Agent suggests deprecated APIs
 - Agent references non-existent libraries
 - Agent provides incorrect factual information
@@ -495,7 +495,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Token costs are higher than expected"
 
-**Symptoms:**
+#### Symptoms:
 - Bills higher than estimated
 - Individual requests expensive
 - Context growing unexpectedly
@@ -562,7 +562,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent is too slow"
 
-**Symptoms:**
+#### Symptoms:
 - Responses taking 30+ seconds
 - Multiple retries before success
 - Timeouts on large tasks

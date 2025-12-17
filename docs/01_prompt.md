@@ -132,7 +132,7 @@ These examples show common mistakes where humans **omit critical information** t
 BAD: "The login isn't working, please fix it"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which login? (Admin login? User login? OAuth login?)
 - What error message appears?
 - What file contains the login code?
@@ -186,7 +186,7 @@ Do not modify:
 BAD: "Add validation to the form"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which form? (Contact form? Signup form? Payment form?)
 - What fields need validation?
 - What validation rules? (Required? Email format? Length limits?)
@@ -251,7 +251,7 @@ Do not modify:
 BAD: "The API call is failing, help me debug it"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which API call? (Could be 50+ API calls in codebase)
 - What error code/message?
 - What's the request payload?
@@ -314,7 +314,7 @@ Test cases:
 
 ### Key Patterns in Good Prompts
 
-**Always include:**
+#### Always include:
 1. **Exact file paths** - src/components/LoginForm.tsx (not "the login file")
 2. **Line numbers** - Line 47 (when relevant)
 3. **Error messages** - Full error text, not "it errors"
@@ -323,7 +323,7 @@ Test cases:
 6. **Constraints** - What NOT to change
 7. **Success criteria** - How to verify it works
 
-**Never assume the agent knows:**
+#### Never assume the agent knows:
 - Your project structure
 - Which file you're talking about
 - What "better", "fix", "improve" means
@@ -369,7 +369,7 @@ Test cases:
 4. Add the issue number as a comment next to the TODO
 5. Commit changes with message "Link TODOs to issues"
 ```
-**Characteristics:**
+#### Characteristics:
 - ✅ Easy to debug (you know which step failed)
 - ✅ Forces you to think through the process
 - ✅ Makes you aware of LLM limitations
@@ -377,7 +377,7 @@ Test cases:
 - ❌ Feels tedious (but this is valuable training!)
 - ❌ Longer prompts (but clearer results)
 
-**Best for:**
+#### Best for:
 - **Beginners** (first 1-2 months)
 - **Complex tasks** where order matters
 - **Critical tasks** where mistakes are expensive
@@ -392,7 +392,7 @@ appropriate labels (frontend/backend/bug/feature) based on the file location
 and comment content. Link each TODO to its issue number. The commit message
 should describe the total number of issues created."
 ```
-**Characteristics:**
+#### Characteristics:
 - ✅ Shorter, feels more natural
 - ✅ Gives agent flexibility in approach
 - ✅ Works well once you've trained your instincts
@@ -401,7 +401,7 @@ should describe the total number of issues created."
 - ❌ Agent makes assumptions you might not want
 - ❌ **Only works reliably after months of practice**
 
-**Best for:**
+#### Best for:
 - **Experienced users** (3+ months)
 - **Simple, well-defined tasks**
 - **When you truly don't care about implementation details**

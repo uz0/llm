@@ -130,8 +130,8 @@ Our reviewers evaluate contributions on:
 #### Completeness (10%)
 - Is the coverage comprehensive?
 - Are edge cases addressed?
-- Prerequisites clearly stated?
-- Next steps provided?
+- Are prerequisites clearly stated?
+- Are next steps provided?
 
 ## 🎨 Style Guide
 
@@ -151,7 +151,7 @@ Our reviewers evaluate contributions on:
 ### Visual Elements
 - **Diagrams**: Use Mermaid syntax for flowcharts and sequence diagrams
 - **Images**: Optimize for web, include alt text
-- **Tables**: Use Markdown tables for structured data
+- **Tables**: Use **Markdown** tables for structured data
 - **Callouts**: Use emojis and formatting for important information
 
 ## 📚 Content Templates

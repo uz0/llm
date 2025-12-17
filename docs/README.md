@@ -8,7 +8,7 @@ LLM Agents Workflow Course by Unity Zone Zero team. Each module builds upon prev
 Learn the fundamentals of writing effective prompts that produce reliable, consistent results from LLMs. This module covers prompt engineering patterns, common pitfalls, and practical techniques for getting predictable outputs.
 
 ## [02_context](02_context.md)
-Master context window management, token economics, and optimization strategies. Understand how efficiently to manage LLM context, control costs, and prevent context pollution in long conversations and complex tasks.
+Master context window management, token economics, and optimization strategies. Understand how to efficiently manage LLM context, control costs, and prevent context pollution in long conversations and complex tasks.
 
 ## [03_claudecode](03_claudecode.md)
 Practical guide to using Claude Code CLI, sub-agent orchestration, and advanced workflows. Learn to install, configure, and effectively use Claude Code for development tasks with hands-on examples.
