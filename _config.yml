@@ -4,6 +4,9 @@ description: Public course materials about LLM agents workflow by Unity Zone Zer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://llm.uz0.dev" # the base hostname & protocol for your site
 
+# GitHub Pages destination
+destination: docs
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
