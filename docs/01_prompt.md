@@ -183,7 +183,7 @@ Do not modify:
 
 #### ❌ BAD PROMPT #2: Vague Requirements
 
-```
+```text
 BAD: "Add validation to the form"
 ```
 
@@ -204,7 +204,7 @@ BAD: "Add validation to the form"
 
 #### ✅ GOOD PROMPT #2: Specific Requirements
 
-```
+```text
 GOOD: "Add validation to the user registration form in src/pages/Register.tsx.
 
 Fields to validate:
@@ -248,7 +248,7 @@ Do not modify:
 
 #### ❌ BAD PROMPT #3: Missing Error Context
 
-```
+```text
 BAD: "The API call is failing, help me debug it"
 ```
 
@@ -269,7 +269,7 @@ BAD: "The API call is failing, help me debug it"
 
 #### ✅ GOOD PROMPT #3: Complete Debugging Context
 
-```
+```text
 GOOD: "Debug the failing API call in src/services/userService.ts, function updateUserProfile (line 67).
 
 Error details:

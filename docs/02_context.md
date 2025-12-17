@@ -190,7 +190,7 @@ Total: ~65,065 tokens
 #### Step 3: Agent Decides to Use Sub-Agent
 
 #### What you see:
-```
+```text
 ⏺ Now I'll use the Task tool with a Plan subagent to analyze the TUI
   implementation details comprehensively.
 ```
@@ -209,7 +209,7 @@ Total: ~65,065 tokens
 #### Step 4: Sub-Agent Execution
 
 #### What you see:
-```
+```text
 ⏺ Plan(Analyze TUI implementation progress)
   ⎿  Done (20 tool uses · 80.1k tokens · 1m 4s)
 ```

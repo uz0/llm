@@ -25,7 +25,7 @@ After completing this module, you will be able to:
 
 | Architecture               | Key Idea                                    |
 | ------------------------- | ------------------------------------------- |
-| Basic Reflection          | Single-pass response generation            |
+| Basic Reflection          | Single-pass response generation             |
 | Actor-Reflector           | Iterative self-critique and improvement     |
 | Tree of Thoughts          | Tree-based solution search                  |
 | Plan-and-Execute          | Explicit step-by-step planning              |
