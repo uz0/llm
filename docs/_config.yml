@@ -57,7 +57,7 @@ exclude:
   - AGENTS.md
   - CLAUDE.md
   - CONTRIBUTING.md
-  - README.md  # Skip README if it exists, use index.md instead
+  - index.md  # Skip index.md, use README.md instead
   - .claude/
   - .github/
 
