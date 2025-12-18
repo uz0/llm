@@ -130,7 +130,6 @@ sequenceDiagram
     M->>U: Present plan based on summary
     Note over U: Sees descriptive plan
 
-    rect rgb(255, 200, 200)
     Note over U,M: Problem: Original prompt too vague<br/>Should have specified imperative plan<br/>with exact file paths and signatures
     end
 ```
@@ -280,7 +279,7 @@ Total start: ~20,100 tokens
 #### The Problem
 
 ```mermaid
-graph LR
+graph TD
     A["Start: 10k tokens"] -->|5 messages| B["45k tokens"]
     B -->|Read 10 files| C["125k tokens"]
     C -->|Tool executions| D["180k tokens"]

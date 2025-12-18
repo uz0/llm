@@ -325,7 +325,7 @@
 .page-nav-list a {
   font-size: 0.85rem;
   color: #586069;
-  padding: 0.5rem 0.75rem;
+  padding: 0.25rem 1.5rem;
   font-weight: 400;
   transition: all 0.2s ease;
   border-left: 2px solid transparent;
@@ -343,6 +343,10 @@
   color: #0366d6;
   border-left-color: #0366d6;
   font-weight: 500;
+}
+
+.page-nav-list a:first-child {
+  padding-top: 1.5rem;
 }
 
 /* Legacy wrapper styles for backward compatibility */

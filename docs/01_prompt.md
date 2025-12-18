@@ -29,7 +29,7 @@ After completing this module, you will be able to:
 #### Architecture: From Client to Backend
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["USER<br/>Message: Analyze this code<br/>POST /v1/messages"] --> B["CONTEXT ASSEMBLY<br/>System Prompt fixed instructions<br/>+ Your Message History conversation<br/>+ Hidden Summaries compaction<br/>+ Tool Results if agent used tools"]
 
     B --> C["TOKENIZATION<br/>45,620 tokens<br/>Max: 200,000"]
@@ -37,12 +37,6 @@ flowchart LR
     C --> D["PROCESSING<br/>Neural network predicts<br/>next tokens statistically"]
 
     D --> E["USER<br/>Sees: Here's my analysis..."]
-
-    style A fill:#e1f5ff
-    style B fill:#fff4e1
-    style C fill:#ffe1e1
-    style D fill:#ffe1ff
-    style E fill:#e1ffe1
 ```
 
 #### What is a Prompt?
@@ -87,15 +81,6 @@ flowchart TD
     F --> G["Top of Message<br/>★★★ HIGHEST ATTENTION<br/>First sentences/paragraphs"]
     F --> H["Middle of Message<br/>★★ MEDIUM ATTENTION<br/>Can be 'lost' in long contexts"]
     F --> I["Bottom of Message<br/>★ LOWER ATTENTION<br/>May be deprioritized"]
-
-    style A fill:#e1f5ff
-    style B fill:#ff9999
-    style C fill:#fff4e1
-    style D fill:#ffcc99
-    style E fill:#e8e8e8
-    style G fill:#99ff99
-    style H fill:#ffff99
-    style I fill:#ffcccc
 ```
 
 Think of LLM as a powerful auto-complete that breaks your sentences into pieces not based on human-meaning, but on statistics and priorities, then tries to "fill in" the gaps with "text in another language."
