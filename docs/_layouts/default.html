@@ -53,7 +53,7 @@
 
             // Initialize Mermaid with v11 configuration structure
             mermaid.initialize({
-              startOnLoad: true,
+              startOnLoad: false, // We'll manually initialize to handle code blocks
               theme: prefersDark ? 'dark' : 'default',
               themeVariables: {
                 darkMode: prefersDark,
@@ -84,6 +84,31 @@
               logLevel: 1 // Suppress unnecessary logs
             });
 
+            // Process Mermaid code blocks
+            function processMermaidBlocks() {
+              const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+
+              mermaidBlocks.forEach((block) => {
+                const pre = block.parentElement;
+                const diagramId = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+
+                // Create a div for the mermaid diagram
+                const diagramDiv = document.createElement('div');
+                diagramDiv.className = 'mermaid';
+                diagramDiv.id = diagramId;
+                diagramDiv.textContent = block.textContent;
+
+                // Replace the pre block with the mermaid div
+                pre.parentNode.replaceChild(diagramDiv, pre);
+              });
+
+              // Run Mermaid after processing all blocks
+              mermaid.run();
+            }
+
+            // Process blocks immediately
+            processMermaidBlocks();
+
             // Handle theme changes for dynamic switching (v11 compatible)
             if (window.matchMedia) {
               window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
@@ -98,8 +123,8 @@
                     tertiaryColor: e.matches ? '#4a4a4a' : '#e0e0e0'
                   }
                 });
-                // Re-run Mermaid initialization for existing diagrams
-                mermaid.run();
+                // Re-process and run Mermaid for existing diagrams
+                processMermaidBlocks();
               });
             }
           }
@@ -118,7 +143,6 @@
             <div class="footer-right">
               <div class="social-links">
                 <a href="https://github.com/dcversus/llm" target="_blank" rel="noopener" class="social-link">GitHub</a>
-                <a href="https://twitter.com/dcversus" target="_blank" rel="noopener" class="social-link">Twitter</a>
               </div>
             </div>
           </div>
