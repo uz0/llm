@@ -71,8 +71,8 @@ defaults:
 # jekyll-readme-index configuration
 readme_index:
   enabled: true
-  remove_originals: false
-  with_frontmatter: false
+  remove_originals: true
+  with_frontmatter: true
 
 # Theme settings (GitHub Pages supported theme)
 theme: jekyll-theme-minimal
