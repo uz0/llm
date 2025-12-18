@@ -2,6 +2,43 @@
 
 Thank you for your interest in contributing to this educational resource! This guide will help you understand how to write high-quality technical articles and contribute effectively to the course materials.
 
+## Local Development
+
+### Requirements
+- **Ruby** 2.7+
+- **Bundler**: `gem install bundler`
+
+### Quick Setup
+```bash
+# Navigate to docs folder (contains Jekyll files)
+cd docs/
+
+# Install dependencies
+bundle install
+
+# Ruby 3.0+ fix (if needed)
+bundle add webrick
+```
+
+### Development Commands
+```bash
+# Serve locally with live reload
+bundle exec jekyll serve --livereload
+
+# Build static files only
+bundle exec jekyll build
+
+# Clean build artifacts
+bundle exec jekyll clean
+```
+
+**Access**: http://localhost:4000
+
+### GitHub Pages
+- **Source**: `/docs` folder
+- **Automatic build** on push
+- **URL**: https://llm.uz0.dev
+
 ## Goals: Contribution Philosophy
 
 We believe in creating educational content that is:
