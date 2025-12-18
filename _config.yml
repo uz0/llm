@@ -19,7 +19,11 @@ plugins:
 lsi: false
 safe: true
 incremental: false
-highlighter: rouge
+
+# Sass configuration
+sass:
+  style: compressed
+  sass_dir: _sass
 gist:
   noscript: false
 kramdown:
@@ -57,7 +61,7 @@ exclude:
 collections:
   docs:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:name/
 
 # Default settings for collections
 defaults:
@@ -70,5 +74,3 @@ defaults:
 # Theme settings (GitHub Pages supported theme)
 theme: jekyll-theme-minimal
 
-# Minimal theme settings (GitHub Pages compatible)
-# No additional settings needed for GitHub Pages compatibility

@@ -1,19 +1,9 @@
 # LLM Agents Workflow Course
 
-### Public course materials about LLM agents workflow by Unity Zone Zero team
+Public course materials about LLM agents by Unity Zone Zero team
 
-## 🎯 Motivation
+## Quick Quick Start
 
-Large Language Models have transformed how we approach software development, research, and problem-solving. However, working effectively with LLM agents requires understanding their fundamental nature, limitations, and best practices. This course bridges the gap between theoretical knowledge and practical application, providing developers with the skills needed to build robust, efficient, and reliable agent-based workflows.
-
-The materials are designed to help you:
-- Understand the statistical nature of LLMs and their limitations
-- Master context management and token economics
-- Learn proven agent architectures and patterns
-- Develop practical skills with real-world examples
-- Build production-ready agent systems
-
-## 🚀 Quick Start
 **Start with** [HOME](docs/README.md) to get course info.
 
 ## 🤝 Contributing
@@ -42,16 +32,16 @@ This course material is **completely free** and open for everyone to use, modify
 - **No restrictions**: Use for personal, educational, or commercial purposes
 
 ### Contributing with Love
-This course is maintained with ❤️ by the **Unity Zone Zero team**. We believe in open education and community-driven knowledge sharing.
+This course is maintained with [love] by the **Unity Zone Zero team**. We believe in open education and community-driven knowledge sharing.
 
 ### Usage Rights
 You are free to:
-- ✅ Use the materials for learning and teaching
-- ✅ Modify and adapt for your needs
-- ✅ Share with others
-- ✅ Use in commercial projects
-- ✅ Contribute improvements back to the community
-- ✅ Fork and create your own versions
+- Use the materials for learning and teaching
+- Modify and adapt for your needs
+- Share with others
+- Use in commercial projects
+- Contribute improvements back to the community
+- Fork and create your own versions
 
 No attribution is required, though credit to the original project is appreciated when building upon these materials.
 

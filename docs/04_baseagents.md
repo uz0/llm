@@ -1,4 +1,10 @@
-# 04_baseagents - Basic Agent Patterns
+---
+layout: default
+title: "Basic Agent Patterns"
+order: 4
+---
+
+# Basic Agent Patterns
 
 Introduction to fundamental agent patterns and simple implementation strategies, including LLM calls vs agents, Chain of Thought, tools integration, and RAG basics.
 
@@ -20,13 +26,13 @@ After completing this module, you will be able to:
 - Understanding of basic system design concepts
 - Familiarity with APIs and HTTP requests
 
-## 📚 Module Content
+## Course Module Content
 
-> **⚠️ CONTENT IN DEVELOPMENT**
+> **WARNING CONTENT IN DEVELOPMENT**
 >
 > This module is currently being developed. The TODO list below shows the planned content structure. Check back later or contribute to help complete this module.
 
-## 📋 TODO List & Future Content Plan
+## Context TODO List & Future Content Plan
 
 ### Section 1: LLM Calls vs Agent-Based Approaches
 - [ ] **Simple LLM Call Patterns**
@@ -125,7 +131,7 @@ After completing this module, you will be able to:
   - Configuration and deployment
   - Monitoring and maintenance
 
-## 🛠️ Planned Code Examples
+## Practice Planned Code Examples
 
 ### Basic CoT Implementation
 ```javascript
@@ -160,7 +166,7 @@ import { Langfuse } from 'langfuse';
 
 ---
 
-## 🚀 Getting Started (Preview)
+## Quick Getting Started (Preview)
 
 While this module is in development, you can:
 
@@ -249,7 +255,7 @@ We welcome contributions to complete this module! See our [Contributing Guidelin
 
 ## 📅 Development Timeline
 
-- **Phase 1** (Current): Basic structure and TODO outline ✅
+- **Phase 1** (Current): Basic structure and TODO outline [PASS]
 - **Phase 2** (Next): Core CoT and tool integration examples
 - **Phase 3**: RAG implementation and OpenAI SDK usage
 - **Phase 4**: Langfuse tracing and observability

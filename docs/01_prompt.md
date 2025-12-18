@@ -1,4 +1,10 @@
-# 01_prompt - Prompt Engineering Fundamentals
+---
+layout: default
+title: "Prompt Engineering Fundamentals"
+order: 1
+---
+
+# Prompt Engineering Fundamentals
 
 Learn the fundamentals of how LLMs work and how to write effective prompts that produce reliable, consistent results.
 
@@ -16,7 +22,7 @@ After completing this module, you will be able to:
 - Basic understanding of what LLMs are
 - Familiarity with text-based interfaces
 
-## 📚 Module Content
+## Module Content
 
 ### How LLMs Work
 
@@ -68,19 +74,19 @@ LLMs are **statistical pattern matchers**, not reasoning entities. They:
 
 ```mermaid
 flowchart TD
-    A["POST /v1/messages<br/>Request to LLM"] --> B["System Prompt<br/>⭐⭐⭐ HIGHEST PRIORITY<br/>Fixed instructions about role"]
+    A["POST /v1/messages<br/>Request to LLM"] --> B["System Prompt<br/>★★★ HIGHEST PRIORITY<br/>Fixed instructions about role"]
 
-    B --> C["Messages Array<br/>⭐⭐ MEDIUM-HIGH PRIORITY"]
+    B --> C["Messages Array<br/>★★ MEDIUM-HIGH PRIORITY"]
 
-    C --> D["Recent Messages<br/>⭐⭐⭐ Higher Weight<br/>Last 5-10 exchanges"]
-    C --> E["Older Messages<br/>⭐ Lower Weight<br/>May be summarized"]
+    C --> D["Recent Messages<br/>★★★ Higher Weight<br/>Last 5-10 exchanges"]
+    C --> E["Older Messages<br/>★ Lower Weight<br/>May be summarized"]
 
     D --> F["Single Message Content<br/>Within each message:"]
     E --> F
 
-    F --> G["Top of Message<br/>⭐⭐⭐ HIGHEST ATTENTION<br/>First sentences/paragraphs"]
-    F --> H["Middle of Message<br/>⭐⭐ MEDIUM ATTENTION<br/>Can be 'lost' in long contexts"]
-    F --> I["Bottom of Message<br/>⭐ LOWER ATTENTION<br/>May be deprioritized"]
+    F --> G["Top of Message<br/>★★★ HIGHEST ATTENTION<br/>First sentences/paragraphs"]
+    F --> H["Middle of Message<br/>★★ MEDIUM ATTENTION<br/>Can be 'lost' in long contexts"]
+    F --> I["Bottom of Message<br/>★ LOWER ATTENTION<br/>May be deprioritized"]
 
     style A fill:#e1f5ff
     style B fill:#ff9999
@@ -121,13 +127,13 @@ Think of the LLM like **Mister Meeseeks** from Rick and Morty: it will try to so
 
 ---
 
-## 🎯 Prompt Engineering Best Practices
+## Goals: Prompt Engineering Best Practices
 
 ### Examples: Bad vs Good Prompts
 
 These examples show common mistakes where humans **omit critical information** they assume the agent knows.
 
-#### ❌ BAD PROMPT #1: Missing Context About Project Structure
+#### [FAIL] BAD PROMPT #1: Missing Context About Project Structure
 
 ```text
 BAD: "The login isn't working, please fix it"
@@ -149,7 +155,7 @@ BAD: "The login isn't working, please fix it"
 
 ---
 
-#### ✅ GOOD PROMPT #1: All Context Provided
+#### [PASS] GOOD PROMPT #1: All Context Provided
 
 ```text
 GOOD: "Fix the authentication error in src/components/LoginForm.tsx.
@@ -181,7 +187,7 @@ Do not modify:
 
 ---
 
-#### ❌ BAD PROMPT #2: Vague Requirements
+#### [FAIL] BAD PROMPT #2: Vague Requirements
 
 ```text
 BAD: "Add validation to the form"
@@ -202,7 +208,7 @@ BAD: "Add validation to the form"
 
 ---
 
-#### ✅ GOOD PROMPT #2: Specific Requirements
+#### [PASS] GOOD PROMPT #2: Specific Requirements
 
 ```text
 GOOD: "Add validation to the user registration form in src/pages/Register.tsx.
@@ -246,7 +252,7 @@ Do not modify:
 
 ---
 
-#### ❌ BAD PROMPT #3: Missing Error Context
+#### [FAIL] BAD PROMPT #3: Missing Error Context
 
 ```text
 BAD: "The API call is failing, help me debug it"
@@ -267,7 +273,7 @@ BAD: "The API call is failing, help me debug it"
 
 ---
 
-#### ✅ GOOD PROMPT #3: Complete Debugging Context
+#### [PASS] GOOD PROMPT #3: Complete Debugging Context
 
 ```text
 GOOD: "Debug the failing API call in src/services/userService.ts, function updateUserProfile (line 67).
@@ -336,7 +342,7 @@ Test cases:
 
 ### Declarative vs Imperative Instructions
 
-> **⚠️ CRITICAL RECOMMENDATION FOR BEGINNERS:**
+> **WARNING CRITICAL RECOMMENDATION FOR BEGINNERS:**
 >
 > **Start with imperative instructions for your first month.**
 >
@@ -371,12 +377,12 @@ Test cases:
 5. Commit changes with message "Link TODOs to issues"
 ```
 #### Characteristics:
-- ✅ Easy to debug (you know which step failed)
-- ✅ Forces you to think through the process
-- ✅ Makes you aware of LLM limitations
-- ✅ Works reliably even with less experienced prompting
-- ❌ Feels tedious (but this is valuable training!)
-- ❌ Longer prompts (but clearer results)
+- [PASS] Easy to debug (you know which step failed)
+- [PASS] Forces you to think through the process
+- [PASS] Makes you aware of LLM limitations
+- [PASS] Works reliably even with less experienced prompting
+- [FAIL] Feels tedious (but this is valuable training!)
+- [FAIL] Longer prompts (but clearer results)
 
 #### Best for:
 - **Beginners** (first 1-2 months)
@@ -394,13 +400,13 @@ and comment content. Link each TODO to its issue number. The commit message
 should describe the total number of issues created."
 ```
 #### Characteristics:
-- ✅ Shorter, feels more natural
-- ✅ Gives agent flexibility in approach
-- ✅ Works well once you've trained your instincts
-- ❌ Hard to debug when it fails
-- ❌ Requires you to implicitly know what details to include
-- ❌ Agent makes assumptions you might not want
-- ❌ **Only works reliably after months of practice**
+- [PASS] Shorter, feels more natural
+- [PASS] Gives agent flexibility in approach
+- [PASS] Works well once you've trained your instincts
+- [FAIL] Hard to debug when it fails
+- [FAIL] Requires you to implicitly know what details to include
+- [FAIL] Agent makes assumptions you might not want
+- [FAIL] **Only works reliably after months of practice**
 
 #### Best for:
 - **Experienced users** (3+ months)
@@ -409,7 +415,7 @@ should describe the total number of issues created."
 
 ---
 
-## 🛠️ Practical Exercise
+## Practice Practical Exercise
 
 Try converting this bad prompt into a good one:
 
@@ -425,7 +431,7 @@ Think about:
 
 ---
 
-## 📊 Key Takeaways
+## Summary Key Takeaways
 
 1. **LLMs are statistical tools**, not reasoning entities
 2. **Specific prompts** yield better results than vague ones

@@ -1,4 +1,10 @@
-# B1_agents_architecture - Advanced Agent Architectures
+---
+layout: default
+title: "Advanced Agent Architectures"
+order: 5
+---
+
+# Advanced Agent Architectures
 
 > 📄 **PDF Version**: [Download the complete analysis (PDF)](B1_agents_architecture.pdf)
 
@@ -19,7 +25,7 @@ After completing this module, you will be able to:
 - Experience with building simple agents
 - Understanding of distributed systems concepts
 
-## 📚 Module Content
+## Course Module Content
 
 ### Overview of Agent Architectures
 
