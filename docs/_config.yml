@@ -13,6 +13,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-readme-index
 
 # GitHub Pages specific settings
 lsi: false
@@ -48,18 +49,10 @@ include:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - LICENSE
-  - AGENTS.md
-  - CLAUDE.md
-  - CONTRIBUTING.md
-  - index.md  # Skip index.md, use README.md instead
-  - .claude/
-  - .github/
 
 # Collections for organizing content
 collections:
@@ -74,6 +67,12 @@ defaults:
       type: "docs"
     values:
       layout: "default"
+
+# jekyll-readme-index configuration
+readme_index:
+  enabled: true
+  remove_originals: false
+  with_frontmatter: false
 
 # Theme settings (GitHub Pages supported theme)
 theme: jekyll-theme-minimal
