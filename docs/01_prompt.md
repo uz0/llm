@@ -1,4 +1,10 @@
-# 01_prompt - Prompt Engineering Fundamentals
+---
+layout: default
+title: "Prompt Engineering Fundamentals"
+order: 1
+---
+
+# Prompt Engineering Fundamentals
 
 Learn the fundamentals of how LLMs work and how to write effective prompts that produce reliable, consistent results.
 
@@ -16,14 +22,14 @@ After completing this module, you will be able to:
 - Basic understanding of what LLMs are
 - Familiarity with text-based interfaces
 
-## 📚 Module Content
+## Module Content
 
 ### How LLMs Work
 
 #### Architecture: From Client to Backend
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["USER<br/>Message: Analyze this code<br/>POST /v1/messages"] --> B["CONTEXT ASSEMBLY<br/>System Prompt fixed instructions<br/>+ Your Message History conversation<br/>+ Hidden Summaries compaction<br/>+ Tool Results if agent used tools"]
 
     B --> C["TOKENIZATION<br/>45,620 tokens<br/>Max: 200,000"]
@@ -31,12 +37,6 @@ flowchart LR
     C --> D["PROCESSING<br/>Neural network predicts<br/>next tokens statistically"]
 
     D --> E["USER<br/>Sees: Here's my analysis..."]
-
-    style A fill:#e1f5ff
-    style B fill:#fff4e1
-    style C fill:#ffe1e1
-    style D fill:#ffe1ff
-    style E fill:#e1ffe1
 ```
 
 #### What is a Prompt?
@@ -46,7 +46,8 @@ A **prompt** is your input message that instructs the LLM what to do. It can be:
 - A complex instruction: "Refactor this Python code to use async/await patterns"
 - A multi-part request with examples and constraints
 
-**Key principle**: Prompts should be specific, actionable, and include success criteria.
+#### Key principle
+Prompts should be specific, actionable, and include success criteria.
 
 ---
 
@@ -66,29 +67,20 @@ LLMs are **statistical pattern matchers**, not reasoning entities. They:
    - **Attention mechanism limitations**: Information can be "lost" in the middle of very long contexts
 
 ```mermaid
-flowchart TD
-    A["POST /v1/messages<br/>Request to LLM"] --> B["System Prompt<br/>⭐⭐⭐ HIGHEST PRIORITY<br/>Fixed instructions about role"]
+---
+config:
+   theme: 'forest'
+---
+treemap
+"POST /v1/messages"
+   "System Prompt": 30
+   "User Prompt older": 10
+   "User Prompt newer"
+      "First tokens": 25
+      "Another tokens": 10
+      "**HIGHLIGHTED** tokens": 15
 
-    B --> C["Messages Array<br/>⭐⭐ MEDIUM-HIGH PRIORITY"]
-
-    C --> D["Recent Messages<br/>⭐⭐⭐ Higher Weight<br/>Last 5-10 exchanges"]
-    C --> E["Older Messages<br/>⭐ Lower Weight<br/>May be summarized"]
-
-    D --> F["Single Message Content<br/>Within each message:"]
-    E --> F
-
-    F --> G["Top of Message<br/>⭐⭐⭐ HIGHEST ATTENTION<br/>First sentences/paragraphs"]
-    F --> H["Middle of Message<br/>⭐⭐ MEDIUM ATTENTION<br/>Can be 'lost' in long contexts"]
-    F --> I["Bottom of Message<br/>⭐ LOWER ATTENTION<br/>May be deprioritized"]
-
-    style A fill:#e1f5ff
-    style B fill:#ff9999
-    style C fill:#fff4e1
-    style D fill:#ffcc99
-    style E fill:#e8e8e8
-    style G fill:#99ff99
-    style H fill:#ffff99
-    style I fill:#ffcccc
+classDef important fill:#f96,stroke:#333,stroke-width:2px;
 ```
 
 Think of LLM as a powerful auto-complete that breaks your sentences into pieces not based on human-meaning, but on statistics and priorities, then tries to "fill in" the gaps with "text in another language."
@@ -120,23 +112,23 @@ Think of the LLM like **Mister Meeseeks** from Rick and Morty: it will try to so
 
 ---
 
-## 🎯 Prompt Engineering Best Practices
+## Goals: Prompt Engineering Best Practices
 
 ### Examples: Bad vs Good Prompts
 
 These examples show common mistakes where humans **omit critical information** they assume the agent knows.
 
-#### ❌ BAD PROMPT #1: Missing Context About Project Structure
+#### [FAIL] BAD PROMPT #1: Missing Context About Project Structure
 
-```text
+```md
 BAD: "The login isn't working, please fix it"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which login? (Admin login? User login? OAuth login?)
 - What error message appears?
-- What file contains the login code?
-- What "not working" means (crash? wrong redirect? blank page?)
+- Which file contains the login code?
+- What does "not working" mean (crash? wrong redirect? blank page?)
 - What framework/language (React? Vue? Plain JS?)
 
 #### Why bad:
@@ -148,9 +140,9 @@ BAD: "The login isn't working, please fix it"
 
 ---
 
-#### ✅ GOOD PROMPT #1: All Context Provided
+#### [PASS] GOOD PROMPT #1: All Context Provided
 
-```text
+```md
 GOOD: "Fix the authentication error in src/components/LoginForm.tsx.
 
 Error: 'Cannot read property userId of undefined' at line 47
@@ -180,13 +172,13 @@ Do not modify:
 
 ---
 
-#### ❌ BAD PROMPT #2: Vague Requirements
+#### [FAIL] BAD PROMPT #2: Vague Requirements
 
-```
+```md
 BAD: "Add validation to the form"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which form? (Contact form? Signup form? Payment form?)
 - What fields need validation?
 - What validation rules? (Required? Email format? Length limits?)
@@ -201,9 +193,9 @@ BAD: "Add validation to the form"
 
 ---
 
-#### ✅ GOOD PROMPT #2: Specific Requirements
+#### [PASS] GOOD PROMPT #2: Specific Requirements
 
-```
+```md
 GOOD: "Add validation to the user registration form in src/pages/Register.tsx.
 
 Fields to validate:
@@ -245,13 +237,13 @@ Do not modify:
 
 ---
 
-#### ❌ BAD PROMPT #3: Missing Error Context
+#### [FAIL] BAD PROMPT #3: Missing Error Context
 
-```
+```md
 BAD: "The API call is failing, help me debug it"
 ```
 
-**What human knows but didn't share:**
+#### What human knows but didn't share:
 - Which API call? (Could be 50+ API calls in codebase)
 - What error code/message?
 - What's the request payload?
@@ -266,9 +258,9 @@ BAD: "The API call is failing, help me debug it"
 
 ---
 
-#### ✅ GOOD PROMPT #3: Complete Debugging Context
+#### [PASS] GOOD PROMPT #3: Complete Debugging Context
 
-```
+```md
 GOOD: "Debug the failing API call in src/services/userService.ts, function updateUserProfile (line 67).
 
 Error details:
@@ -314,7 +306,7 @@ Test cases:
 
 ### Key Patterns in Good Prompts
 
-**Always include:**
+#### Always include:
 1. **Exact file paths** - src/components/LoginForm.tsx (not "the login file")
 2. **Line numbers** - Line 47 (when relevant)
 3. **Error messages** - Full error text, not "it errors"
@@ -323,7 +315,7 @@ Test cases:
 6. **Constraints** - What NOT to change
 7. **Success criteria** - How to verify it works
 
-**Never assume the agent knows:**
+#### Never assume the agent knows:
 - Your project structure
 - Which file you're talking about
 - What "better", "fix", "improve" means
@@ -335,7 +327,7 @@ Test cases:
 
 ### Declarative vs Imperative Instructions
 
-> **⚠️ CRITICAL RECOMMENDATION FOR BEGINNERS:**
+> **WARNING CRITICAL RECOMMENDATION FOR BEGINNERS:**
 >
 > **Start with imperative instructions for your first month.**
 >
@@ -343,7 +335,7 @@ Test cases:
 >
 > **This is an illusion. Declarative is actually HARDER.**
 >
-> Why? Because when declarative prompts fail, you can't debug them. You don't know which step the agent got wrong. You don't know what assumptions it made. You just know the result is wrong.
+> Why? Because when declarative prompts fail, you can't debug them. One doesn't know which step the agent got wrong. You don't know what assumptions it made. You just know the result is wrong.
 >
 > With imperative instructions, you:
 > 1. **Learn LLM limitations** by hitting them explicitly
@@ -369,15 +361,15 @@ Test cases:
 4. Add the issue number as a comment next to the TODO
 5. Commit changes with message "Link TODOs to issues"
 ```
-**Characteristics:**
-- ✅ Easy to debug (you know which step failed)
-- ✅ Forces you to think through the process
-- ✅ Makes you aware of LLM limitations
-- ✅ Works reliably even with less experienced prompting
-- ❌ Feels tedious (but this is valuable training!)
-- ❌ Longer prompts (but clearer results)
+#### Characteristics:
+- [PASS] Easy to debug (you know which step failed)
+- [PASS] Forces you to think through the process
+- [PASS] Makes you aware of LLM limitations
+- [PASS] Works reliably even with less experienced prompting
+- [FAIL] Feels tedious (but this is valuable training!)
+- [FAIL] Longer prompts (but clearer results)
 
-**Best for:**
+#### Best for:
 - **Beginners** (first 1-2 months)
 - **Complex tasks** where order matters
 - **Critical tasks** where mistakes are expensive
@@ -392,23 +384,23 @@ appropriate labels (frontend/backend/bug/feature) based on the file location
 and comment content. Link each TODO to its issue number. The commit message
 should describe the total number of issues created."
 ```
-**Characteristics:**
-- ✅ Shorter, feels more natural
-- ✅ Gives agent flexibility in approach
-- ✅ Works well once you've trained your instincts
-- ❌ Hard to debug when it fails
-- ❌ Requires you to implicitly know what details to include
-- ❌ Agent makes assumptions you might not want
-- ❌ **Only works reliably after months of practice**
+#### Characteristics:
+- [PASS] Shorter, feels more natural
+- [PASS] Gives agent flexibility in approach
+- [PASS] Works well once you've trained your instincts
+- [FAIL] Hard to debug when it fails
+- [FAIL] Requires you to implicitly know what details to include
+- [FAIL] Agent makes assumptions you might not want
+- [FAIL] **Only works reliably after months of practice**
 
-**Best for:**
+#### Best for:
 - **Experienced users** (3+ months)
 - **Simple, well-defined tasks**
 - **When you truly don't care about implementation details**
 
 ---
 
-## 🛠️ Practical Exercise
+## Practice Practical Exercise
 
 Try converting this bad prompt into a good one:
 
@@ -418,13 +410,13 @@ Think about:
 - What specific performance issues?
 - Which parts of the app?
 - What does "faster" mean (load time? response time? render time?)
-- What are the current metrics?
-- What are the target metrics?
+- Which are the current metrics?
+- Which are the target metrics?
 - What constraints exist?
 
 ---
 
-## 📊 Key Takeaways
+## Summary Key Takeaways
 
 1. **LLMs are statistical tools**, not reasoning entities
 2. **Specific prompts** yield better results than vague ones

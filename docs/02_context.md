@@ -1,4 +1,10 @@
-# 02_context - Context Management
+---
+layout: default
+title: "Context Management"
+order: 2
+---
+
+# Context Management
 
 Master context window management, token economics, and optimization strategies for working efficiently with LLMs, with specific focus on Claude API and implementation details.
 
@@ -17,7 +23,7 @@ After completing this module, you will be able to:
 - Completion of [01_prompt](01_prompt.md)
 - Basic understanding of LLM APIs
 
-## 📚 Module Content
+## Course Module Content
 
 ### Understanding Context Windows
 
@@ -42,7 +48,7 @@ sequenceDiagram
 
     User->>Context: Messages accumulate
     Note over Context: 195,000 / 200,000 tokens
-    Context->>System: ⚠️ Approaching limit!
+    Context->>System: WARNING Approaching limit!
     System->>System: Trigger compaction
     Note over System: Summarizing old messages:<br/>User asked about auth,<br/>I provided JWT examples
     System->>Context: Remove old verbose messages
@@ -59,7 +65,7 @@ sequenceDiagram
 
 **1 token ≈ 4 characters** (for English text, approximate)
 
-```text
+```md
 English:  ~4 characters = 1 token
           1000 characters ≈ 250 tokens
 
@@ -93,40 +99,40 @@ Code:     ~3.5 characters = 1 token (more efficient due to symbols)
 
 ```mermaid
 sequenceDiagram
-    participant U as User
-    participant M as Main Agent
-    participant T as Tools
-    participant S as Sub-Agent (Plan)
+   participant U as User
+   participant M as Main Agent
+   participant T as Tools
+   participant S as Sub-Agent (Plan)
 
-    U->>M: analyse implementation details...
-    Note over M: Context: 50k tokens
+   U->>M: analyse implementation details...
+   Note over M: Context: 50k tokens
 
-    M->>T: Read PRP-003 document
-    T-->>M: 1132 lines returned
-    Note over M: Context: 65k tokens
+   M->>T: Read PRP-003 document
+   T-->>M: 1132 lines returned
+   Note over M: Context: 65k tokens
 
-    M->>M: Task is complex, spawn sub-agent
-    M->>S: Analyze TUI implementation
-    Note over S: Fresh context: 20k tokens
+   M->>M: Task is complex, spawn sub-agent
+   M->>S: Analyze TUI implementation
+   Note over S: Fresh context: 20k tokens
 
-    S->>T: Read src/tui/main.tsx
-    T-->>S: 8k tokens
-    S->>T: Read StatusBar.tsx
-    T-->>S: 3k tokens
-    S->>T: 18 more tool calls
-    T-->>S: 49k more tokens
-    Note over S: Context: 80k tokens
+   S->>T: Read src/tui/main.tsx
+   T-->>S: 8k tokens
+   S->>T: Read StatusBar.tsx
+   T-->>S: 3k tokens
+   S->>T: 18 more tool calls
+   T-->>S: 49k more tokens
+   Note over S: Context: 80k tokens
 
-    S->>S: Analyze all data
-    S-->>M: Return 500 token summary only
-    Note over M: Context: 65.5k not 145k!
+   S->>S: Analyze all data
+   S-->>M: Return 500 token summary only
+   Note over M: Context: 65.5k not 145k!
 
-    M->>U: Present plan based on summary
-    Note over U: Sees descriptive plan
+   M->>U: Present plan based on summary
+   Note over U: Sees descriptive plan
 
-    rect rgb(255, 200, 200)
-    Note over U,M: Problem: Original prompt too vague<br/>Should have specified imperative plan<br/>with exact file paths and signatures
-    end
+   rect
+   Note over U,M: Problem: Original prompt too vague
+   end
 ```
 #### Real Example Breakdown
 
@@ -140,19 +146,19 @@ Let's trace through an actual Claude Code interaction:
 
 #### Step 1: Initial Response + Hidden Command
 
-**What you see:**
-```text
-⏺ I'll analyze the implementation details for PRP-003 TUI implementation.
+#### What you see:
+```md
+> I'll analyze the implementation details for PRP-003 TUI implementation.
   Let me first read the PRP document and then examine the current codebase
   to understand what has been implemented.
 ```
 
-**What happens in context:**
+#### What happens in context:
 - Agent decides it needs to read the file first
 - Generates hidden tool call: `Read(PRPs/PRP-003-tui-implementation.md)`
 
-**Context at this point:**
-```text
+#### Context at this point:
+```md
 [System Prompt: ~50k tokens]
 [User Message: "analyse implementation..." ~15 tokens]
 [Assistant Thinking: "I need to read PRP first..." ~50 tokens]
@@ -162,18 +168,18 @@ Total: ~50,065 tokens
 
 #### Step 2: Tool Execution
 
-**What you see:**
-```text
-⏺ Read(PRPs/PRP-003-tui-implementation.md)
+#### What you see:
+```md
+> Read(PRPs/PRP-003-tui-implementation.md)
   ⎿  Read 1132 lines
 ```
 
-**What happens:**
+#### What happens:
 - File content loaded into context (full 1132 lines)
 - Context size increases significantly
 - Claude now has the full requirements document
 
-**Context now:**
+#### Context now:
 ```
 [System Prompt: ~50k tokens]
 [User Message: ~15 tokens]
@@ -189,13 +195,13 @@ Total: ~65,065 tokens
 
 #### Step 3: Agent Decides to Use Sub-Agent
 
-**What you see:**
-```
-⏺ Now I'll use the Task tool with a Plan subagent to analyze the TUI
+#### What you see:
+```md
+> Now I'll use the Task tool with a Plan subagent to analyze the TUI
   implementation details comprehensively.
 ```
 
-**What happens:**
+#### What happens:
 - Main agent realizes task is complex (needs to read many files)
 - Decides to spawn a **sub-agent with independent context**
 - Sub-agent gets its own fresh context window (doesn't inherit main agent's 65k tokens)
@@ -208,15 +214,15 @@ Total: ~65,065 tokens
 
 #### Step 4: Sub-Agent Execution
 
-**What you see:**
-```
-⏺ Plan(Analyze TUI implementation progress)
-  ⎿  Done (20 tool uses · 80.1k tokens · 1m 4s)
+#### What you see:
+```md
+> Plan(Analyze TUI implementation progress)
+  ⎿  Done (20 tool uses • 80.1k tokens • 1m 4s)
 ```
 
-**What happens in sub-agent context:**
+#### What happens in sub-agent context:
 
-**Sub-agent receives:**
+#### Sub-agent receives:
 ```
 [Sub-agent System Prompt: "You are a code analysis expert..." ~5k tokens]
 [Task: "Analyze TUI implementation against PRP-003" ~100 tokens]
@@ -225,7 +231,7 @@ Total: ~65,065 tokens
 Total start: ~20,100 tokens
 ```
 
-**Sub-agent executes 20 tool calls:**
+#### Sub-agent executes 20 tool calls:
 1. `Read(src/tui/main.tsx)` - loads main TUI file (~8k tokens)
 2. `Read(src/tui/components/StatusBar.tsx)` - checks status bar (~3k tokens)
 3. `Read(src/tui/components/PRPList.tsx)` - checks PRP list (~4k tokens)
@@ -235,7 +241,7 @@ Total start: ~20,100 tokens
 
 **Sub-agent context grows to 80,100 tokens** with all the code it read.
 
-**Sub-agent performs analysis and generates SHORT SUMMARY:**
+#### Sub-agent performs analysis and generates SHORT SUMMARY:
 ```json
 {
   "status": "65% complete",
@@ -274,22 +280,16 @@ Total start: ~20,100 tokens
 #### The Problem
 
 ```mermaid
-graph LR
+graph TD
     A["Start: 10k tokens"] -->|5 messages| B["45k tokens"]
     B -->|Read 10 files| C["125k tokens"]
     C -->|Tool executions| D["180k tokens"]
-    D -->|More work| E["195k tokens<br/>⚠️ LLM degrading"]
-
-    style A fill:#e1ffe1
-    style B fill:#fff4e1
-    style C fill:#ffe1e1
-    style D fill:#ff9999
-    style E fill:#ff6666
+    D -->|More work| E["195k tokens<br/>WARNING LLM degrading"]
 ```
 
 #### Solutions
 
-**Frequent clearing:**
+#### Frequent clearing:
 ```bash
 Task: "Implement authentication"
 → Work on it (multiple prompts, file reads)
@@ -301,7 +301,7 @@ Next task: "Add logging"
 → Clean slate, optimal performance
 ```
 
-**Use sub-agents for isolation:**
+#### Use sub-agents for isolation:
 ```bash
 > Use code-analyzer sub-agent to find performance issues in src/,
   then use optimizer sub-agent to fix them.
@@ -315,7 +315,7 @@ Next task: "Add logging"
 
 #### 1. Prompt Compression
 
-❌ Wasteful (127 tokens):
+[FAIL] Wasteful (127 tokens):
 ```
 I would like you to please analyze the implementation details of our
 codebase specifically looking at the terminal user interface components
@@ -326,7 +326,7 @@ versus what still needs to be done and also identify any potential
 issues or blockers that might prevent us from finishing this work.
 ```
 
-✅ Efficient (31 tokens):
+[PASS] Efficient (31 tokens):
 ```
 Analyze TUI implementation against prp/PRPs/PRP-003-tui-implementation.md.
 Return: completion status, missing features, blockers.
@@ -337,7 +337,7 @@ Format: markdown table.
 
 #### 2. Avoid Repeated File Reads
 
-❌ Bad (16k tokens wasted):
+[FAIL] Bad (16k tokens wasted):
 ```
 Message 1: "Analyze auth.ts"
 → Agent reads auth.ts (8k tokens added to context)
@@ -349,7 +349,7 @@ Message 3: "What about the types?"
 → Agent reads auth.ts THIRD TIME (24k tokens!)
 ```
 
-✅ Good (12k tokens total):
+[PASS] Good (12k tokens total):
 ```
 "Analyze auth.ts and auth-types.ts together. Check:
 1. Logic correctness
@@ -378,11 +378,11 @@ Claude creates artifact (separate context)
 
 ---
 
-## 🛠️ Troubleshooting Common Issues
+## Practice Troubleshooting Common Issues
 
 ### Issue: "Claude keeps forgetting what we discussed"
 
-**Symptoms:**
+#### Symptoms:
 - Agent asks for information you already provided
 - Agent repeats previous suggestions
 - Agent doesn't remember earlier decisions
@@ -398,7 +398,7 @@ Claude creates artifact (separate context)
 5. Put critical information in CLAUDE.md file (always included)
 6. Re-state critical constraints at start of each prompt
 
-**Prevention:**
+#### Prevention:
 ```bash
 # Add to CLAUDE.md in project root:
 ## Critical Context (Always Remember)
@@ -413,7 +413,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent is doing things I didn't ask for"
 
-**Symptoms:**
+#### Symptoms:
 - Agent modifies files you didn't mention
 - Agent changes code style unexpectedly
 - Agent adds features you didn't request
@@ -428,8 +428,8 @@ Claude creates artifact (separate context)
 
 2. Use imperative instructions:
    ```
-   ❌ "Improve the authentication code"
-   ✅ "In src/auth/login.ts, add email validation before password check.
+   [FAIL] "Improve the authentication code"
+   [PASS] "In src/auth/login.ts, add email validation before password check.
       Do not modify password hashing logic.
       Do not change error message formats."
    ```
@@ -454,7 +454,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent gives wrong/outdated information"
 
-**Symptoms:**
+#### Symptoms:
 - Agent suggests deprecated APIs
 - Agent references non-existent libraries
 - Agent provides incorrect factual information
@@ -464,8 +464,8 @@ Claude creates artifact (separate context)
 **Solutions**:
 1. Ask agent to search documentation:
    ```
-   ❌ "How do I use the Anthropic API?"
-   ✅ "Search the official Anthropic documentation for API authentication.
+   [FAIL] "How do I use the Anthropic API?"
+   [PASS] "Search the official Anthropic documentation for API authentication.
       Provide the current recommended approach."
    ```
 
@@ -495,7 +495,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Token costs are higher than expected"
 
-**Symptoms:**
+#### Symptoms:
 - Bills higher than estimated
 - Individual requests expensive
 - Context growing unexpectedly
@@ -516,8 +516,8 @@ Claude creates artifact (separate context)
 
 2. Write prompts in English:
    ```
-   ❌ Russian: 1000 chars = ~400 tokens = $0.0012 input (Sonnet)
-   ✅ English: 1000 chars = ~250 tokens = $0.00075 input (Sonnet)
+   [FAIL] Russian: 1000 chars = ~400 tokens = $0.0012 input (Sonnet)
+   [PASS] English: 1000 chars = ~250 tokens = $0.00075 input (Sonnet)
    Savings: 37.5% per request
    ```
 
@@ -562,7 +562,7 @@ Claude creates artifact (separate context)
 
 ### Issue: "Agent is too slow"
 
-**Symptoms:**
+#### Symptoms:
 - Responses taking 30+ seconds
 - Multiple retries before success
 - Timeouts on large tasks
@@ -594,11 +594,11 @@ Claude creates artifact (separate context)
 
 4. Parallelize with sub-agents:
    ```
-   ❌ Serial (slow):
+   [FAIL] Serial (slow):
    Read file → Analyze → Fix → Test → Commit
    Total: 60 seconds
 
-   ✅ Parallel (fast):
+   [PASS] Parallel (fast):
    Sub-agent 1: Analyze frontend files
    Sub-agent 2: Analyze backend files
    Sub-agent 3: Analyze database files
@@ -609,15 +609,15 @@ Claude creates artifact (separate context)
 5. Use headless mode for batch processing:
    ```bash
    # Process 100 files
-   ❌ Interactive: 100 × 10s = 1000s (17 minutes)
-   ✅ Headless batch: 100 files in 300s (5 minutes)
+   [FAIL] Interactive: 100 × 10s = 1000s (17 minutes)
+   [PASS] Headless batch: 100 files in 300s (5 minutes)
 
    claude -p "Fix linting errors in src/**/*.ts" --dangerously-skip-permissions
    ```
 
 ---
 
-## 🛠️ Practical Examples
+## Practice Practical Examples
 
 ### Context Hygiene Checklist
 
@@ -667,7 +667,7 @@ Savings: 45,000 × 9 messages × $3/1M = $1.215
 New cost: $1.54 - $1.215 = $0.325
 ```
 
-## 📊 Key Takeaways
+## Summary Key Takeaways
 
 1. **Context management is critical** for quality and cost
 2. **Clear context after each task** using `/clear`

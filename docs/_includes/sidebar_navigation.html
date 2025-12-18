@@ -1,0 +1,227 @@
+{% comment %}
+Dynamic sidebar navigation using Jekyll pages with front matter
+Generates navigation based on all pages that have 'order' parameter in front matter
+Shows course title, sorted modules, and current page sections dynamically
+{% endcomment %}
+
+{% assign current_path = page.url | remove: '.html' %}
+
+<!-- Only show sidebar on docs pages, not main page or docs README -->
+{% if current_path != '/' and current_path != '/index.html' and current_path != '/docs/' and current_path != '/docs/README.md' %}
+<nav class="sidebar-nav">
+  <div class="sidebar-content">
+    <!-- Course Title with dynamic site title -->
+    <div class="course-title">
+      <h3><a href="/" class="course-home-link">{{ site.title | default: "LLM Agents Workflow Course" }}</a></h3>
+    </div>
+
+    <!-- Course Modules - dynamically generated from pages with order parameter -->
+    <div class="nav-section">
+      <ul class="nav-list">
+        {% comment %}
+        Get all pages (both site.pages and site.html_pages) that have an 'order' parameter
+        This will dynamically include any markdown files with front matter containing 'order: X'
+        {% endcomment %}
+
+        {% assign ordered_pages = site.pages | where_exp: 'p', 'p.order != nil' | sort: 'order' %}
+        {% assign ordered_html_pages = site.html_pages | where_exp: 'p', 'p.order != nil' | sort: 'order' %}
+
+        {% comment %}Combine both sets of pages{% endcomment %}
+        {% assign all_ordered_pages = ordered_pages | concat: ordered_html_pages | sort: 'order' %}
+
+        {% comment %}Remove duplicates and exclude index/homepage{% endcomment %}
+        {% assign unique_pages = '' | split: '' %}
+        {% for page_item in all_ordered_pages %}
+          {% unless page_item.url == '/' or page_item.url == '/index.html' or page_item.url contains '/assets/' %}
+            {% assign page_found = false %}
+            {% for unique_page in unique_pages %}
+              {% if page_item.url == unique_page.url %}
+                {% assign page_found = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% unless page_found %}
+              {% assign unique_pages = unique_pages | push: page_item %}
+            {% endunless %}
+          {% endunless %}
+        {% endfor %}
+
+        {% comment %}Generate navigation for unique pages{% endcomment %}
+        {% for nav_page in unique_pages %}
+          <li class="nav-item">
+            <a href="{{ nav_page.url }}"
+               class="nav-link{% if current_path == nav_page.url or current_path contains nav_page.url %} active{% endif %}"
+               data-page="{{ nav_page.url | split: '/' | last | remove: '.html' }}">
+              <span class="nav-indicator">{{ nav_page.order }}</span>
+              <span class="nav-text">{{ nav_page.title | default: nav_page.name | replace: '_', ' ' | capitalize | remove: '.html' }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Current Page Sections - dynamically generated from page headers -->
+    <div class="nav-section current-chapter-nav" id="current-chapter-nav" style="display: none;">
+      <h4 class="nav-section-title">{{ page.title | default: "Current Chapter" }}</h4>
+      <ul class="nav-list page-nav-list" id="current-chapter-list">
+        <!-- Auto-generated from page headers -->
+      </ul>
+    </div>
+
+    <!-- Page Info - displays current page metadata -->
+    {% if page.title or page.description %}
+    <div class="nav-section page-info">
+      {% if page.title %}
+      <p class="page-title">{{ page.title }}</p>
+      {% endif %}
+      {% if page.description %}
+      <p class="page-description">{{ page.description }}</p>
+      {% endif %}
+      {% if page.order %}
+      <p class="page-order">Module {{ page.order }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initializeDynamicNavigation();
+});
+
+function initializeDynamicNavigation() {
+  generateCurrentChapterNav();
+  enhanceActiveNavigation();
+  setupNavigationInteractions();
+}
+
+function generateCurrentChapterNav() {
+  // Don't generate chapter navigation on index page or docs/README.md
+  const currentPath = window.location.pathname;
+  if (currentPath === '/' || currentPath === '/index.html' || currentPath === '/docs/' || currentPath.endsWith('/docs/README.md')) {
+    return;
+  }
+
+  const contentSection = document.querySelector('.content');
+  if (!contentSection) return;
+
+  const headers = contentSection.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  const currentChapterNav = document.getElementById('current-chapter-nav');
+  const chapterList = document.getElementById('current-chapter-list');
+
+  if (headers.length > 1 && currentChapterNav && chapterList) {
+    currentChapterNav.style.display = 'block';
+    chapterList.innerHTML = '';
+
+    headers.forEach((header, index) => {
+      // Skip the main title (first h1)
+      if (header.tagName === 'H1' && index === 0) return;
+
+      const id = header.id || generateHeaderId(header.textContent);
+      if (!header.id) header.id = id;
+
+      const li = document.createElement('li');
+      li.className = `nav-item level-${header.tagName.toLowerCase()}`;
+
+      const level = parseInt(header.tagName.charAt(1));
+      const indent = 16 + Math.max(0, (level - 2) * 16); // h2 = 16px (1rem), h3 = 32px (2rem), h4 = 48px (3rem), etc.
+
+      const link = document.createElement('a');
+      link.href = `#${id}`;
+      link.className = 'nav-link section-link';
+      link.style.paddingLeft = `${indent}px`;
+      link.textContent = header.textContent.trim();
+
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          updateActiveSection(this);
+        }
+      });
+
+      li.appendChild(link);
+      chapterList.appendChild(li);
+    });
+
+    // Set initial active section based on scroll position
+    updateActiveSectionOnScroll();
+  }
+}
+
+function enhanceActiveNavigation() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav-link[data-page]');
+
+  navLinks.forEach(link => {
+    const page = link.getAttribute('data-page');
+    if (currentPath.includes(page) ||
+        currentPath.endsWith(page + '.html') ||
+        currentPath === link.getAttribute('href')) {
+      link.classList.add('active');
+    }
+  });
+}
+
+function setupNavigationInteractions() {
+  // Update active section on scroll
+  window.addEventListener('scroll', updateActiveSectionOnScroll);
+
+  // Handle keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key >= '1' && e.key <= '9') {
+      const index = parseInt(e.key) - 1;
+      const navLinks = document.querySelectorAll('.nav-link[data-page]');
+      if (navLinks[index]) {
+        window.location.href = navLinks[index].href;
+      }
+    }
+  });
+}
+
+function updateActiveSectionOnScroll() {
+  const sections = document.querySelectorAll('.content h2, .content h3, .content h4, .content h5, .content h6');
+  const sectionLinks = document.querySelectorAll('.section-link');
+
+  let currentSection = null;
+  const scrollPosition = window.scrollY + 100;
+
+  sections.forEach(section => {
+    if (section.offsetTop <= scrollPosition) {
+      currentSection = section.id;
+    }
+  });
+
+  sectionLinks.forEach(link => {
+    link.classList.remove('active');
+    const targetId = link.getAttribute('href').substring(1);
+    if (targetId === currentSection) {
+      link.classList.add('active');
+    }
+  });
+}
+
+function updateActiveSection(clickedLink) {
+  document.querySelectorAll('.section-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  clickedLink.classList.add('active');
+}
+
+function generateHeaderId(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+}
+
+</script>
+{% endif %}

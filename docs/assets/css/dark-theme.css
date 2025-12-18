@@ -1,0 +1,361 @@
+/* Enhanced Dark theme with proper specificity - No !important rules */
+
+/* Dark theme base styles - using high specificity to override */
+@media (prefers-color-scheme: dark) {
+  /* Body and base text - high specificity override */
+  html body {
+    background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+    color: #c9d1d9;
+  }
+
+  /* Main content areas */
+  body .site-container {
+    background: #0d1117;
+  }
+
+  body .content,
+  body .main-content,
+  body .container {
+    background-color: transparent;
+    color: #c9d1d9;
+  }
+
+  /* Sidebar dark theme */
+  body .sidebar {
+    background: #161b22;
+    border-right-color: #30363d;
+  }
+
+  body .main-content-full {
+    background: #0d1117;
+  }
+
+  /* Header and footer */
+  body .site-header {
+    background: #0d1117;
+    border-bottom-color: #21262d;
+  }
+
+  body .page-sections-nav {
+    background: #161b22;
+    border-color: #30363d;
+  }
+
+  body .site-footer {
+    background: #161b22;
+    border-top-color: #30363d;
+  }
+
+  /* Footer content */
+  body .footer-left p {
+    color: #8b949e;
+  }
+
+  body .social-link {
+    color: #58a6ff;
+  }
+
+  body .social-link:hover {
+    background-color: #21262d;
+  }
+
+  /* Navigation dark theme */
+  body .course-title h3 a {
+    color: #f0f6fc;
+  }
+
+  body .course-title h3 a:hover {
+    color: #58a6ff;
+  }
+
+  body .nav-section-title {
+    color: #8b949e;
+  }
+
+  body .nav-link {
+    color: #58a6ff;
+  }
+
+  body .nav-link:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: #f0f6fc;
+  }
+
+  body .nav-link.active {
+    background-color: rgba(88, 166, 255, 0.15);
+    color: white;
+    border-left-color: #58a6ff;
+  }
+
+  body .nav-link.section-link {
+    color: #8b949e;
+  }
+
+  body .nav-link.section-link:hover {
+    background-color: rgba(88, 166, 255, 0.05);
+    color: #58a6ff;
+  }
+
+  body .nav-link.section-link.active {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.1);
+  }
+
+  /* Smart navigation dark theme */
+  body .smart-nav {
+    background: #161b22;
+    border-color: #30363d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  body .nav-header {
+    background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+  }
+
+  body .nav-header h3 {
+    color: #f0f6fc;
+  }
+
+  body .section-header h4 {
+    color: #f0f6fc;
+  }
+
+  body .nav-toggle,
+  body .section-toggle {
+    color: #8b949e;
+  }
+
+  body .nav-toggle:hover,
+  body .section-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f6fc;
+  }
+
+  /* Breadcrumb navigation */
+  body .breadcrumb-home,
+  body .breadcrumb-link {
+    color: #58a6ff;
+  }
+
+  body .breadcrumb-current {
+    color: #f0f6fc;
+  }
+
+  body .breadcrumb-separator {
+    color: #8b949e;
+  }
+
+  /* Typography and content */
+  body h1, body h2, body h3, body h4, body h5, body h6 {
+    color: #f0f6fc;
+  }
+
+  body strong {
+    color: white;
+  }
+
+  body a {
+    color: #58a6ff;
+  }
+
+  body a:hover {
+    color: #79c0ff;
+  }
+
+  /* Code blocks - use higher specificity */
+  body pre,
+  body code {
+    background-color: #161b22;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+  }
+
+  body code {
+    background-color: rgba(110, 118, 129, 0.4);
+    padding: 0.2em 0.4em;
+  }
+
+  body pre {
+    background-color: #0d1117;
+    border-color: #30363d;
+  }
+
+  body pre > code {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  /* Blockquotes */
+  body blockquote {
+    background-color: rgba(110, 118, 129, 0.1);
+    border-left-color: #58a6ff;
+    color: #8b949e;
+  }
+
+  /* Tables */
+  body table {
+    background-color: #161b22;
+    color: #c9d1d9;
+  }
+
+  body table th,
+  body table td {
+    border-color: #30363d;
+  }
+
+  body table th {
+    background-color: #21262d;
+  }
+
+  /* Page navigation */
+  body .page-nav-link {
+    color: #8b949e;
+  }
+
+  body .page-nav-link:hover {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.1);
+  }
+
+  body .page-nav-link.active {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.15);
+    font-weight: 500;
+  }
+
+  /* Course info sections */
+  body .page-info {
+    background-color: rgba(88, 166, 255, 0.1);
+    border-left-color: #58a6ff;
+  }
+
+  body .page-title {
+    color: #f0f6fc;
+  }
+
+  body .page-description {
+    color: #8b949e;
+  }
+
+  body .page-order {
+    color: #58a6ff;
+  }
+
+  /* Course navigation */
+  body .course-nav h3 {
+    color: #f0f6fc;
+    border-bottom-color: #30363d;
+  }
+
+  body .nav-list a {
+    color: #58a6ff;
+  }
+
+  body .nav-list a:hover {
+    background-color: #21262d;
+    color: #f0f6fc;
+  }
+
+  body .nav-list a.active {
+    background-color: #0d1117;
+    color: #58a6ff;
+  }
+
+  /* Current chapter navigation */
+  body .current-chapter-nav h4 {
+    color: #58a6ff;
+  }
+
+  body .page-nav-list a {
+    color: #8b949e;
+    padding: 0.25rem;
+  }
+
+  body .page-nav-list a:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+  }
+
+  body .page-nav-list a.active {
+    background-color: rgba(88, 166, 255, 0.15);
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+  }
+
+  /* TOC (Table of Contents) */
+  body .toc {
+    background-color: rgba(88, 166, 255, 0.05);
+  }
+
+  body .toc h3 {
+    color: #f0f6fc;
+  }
+
+  /* Images in dark mode */
+  body img {
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+
+  body img:hover {
+    opacity: 1;
+  }
+
+  /* Mermaid diagrams dark theme */
+  body .mermaid {
+    background-color: transparent;
+  }
+
+  body .mermaid svg {
+    background-color: transparent;
+  }
+
+  body .mermaid .label text,
+  body .mermaid .cluster-label text,
+  body .mermaid .titleText text {
+    fill: #c9d1d9;
+  }
+
+  body .mermaid .node rect,
+  body .mermaid .node circle,
+  body .mermaid .node ellipse {
+    fill: transparent;
+    stroke: #58a6ff;
+  }
+
+  body .mermaid .edgePath path {
+    stroke: #8b949e;
+  }
+
+  body .mermaid .edgeLabel {
+    background-color: transparent;
+    color: #c9d1d9;
+  }
+
+  /* Mermaid error styling */
+  body .mermaid-error {
+    color: #f85149;
+    background-color: rgba(248, 81, 73, 0.1);
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #f85149;
+  }
+
+  /* Scrollbar styling for dark theme */
+  @media screen and (max-width: 768px) {
+    body .nav-content::-webkit-scrollbar-thumb {
+      background: #586069;
+      border-radius: 2px;
+    }
+
+    body .nav-content::-webkit-scrollbar-thumb:hover {
+      background: #8b949e;
+    }
+
+    body .nav-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+}

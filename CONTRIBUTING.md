@@ -2,7 +2,44 @@
 
 Thank you for your interest in contributing to this educational resource! This guide will help you understand how to write high-quality technical articles and contribute effectively to the course materials.
 
-## 🎯 Contribution Philosophy
+## Local Development
+
+### Requirements
+- **Ruby** 2.7+
+- **Bundler**: `gem install bundler`
+
+### Quick Setup
+```bash
+# Navigate to docs folder (contains Jekyll files)
+cd docs/
+
+# Install dependencies
+bundle install
+
+# Ruby 3.0+ fix (if needed)
+bundle add webrick
+```
+
+### Development Commands
+```bash
+# Serve locally with live reload
+bundle exec jekyll serve --livereload
+
+# Build static files only
+bundle exec jekyll build
+
+# Clean build artifacts
+bundle exec jekyll clean
+```
+
+**Access**: http://localhost:4000
+
+### GitHub Pages
+- **Source**: `/docs` folder
+- **Automatic build** on push
+- **URL**: https://llm.uz0.dev
+
+## Goals: Contribution Philosophy
 
 We believe in creating educational content that is:
 - **Practical**: Focus on real-world applications and examples
@@ -11,7 +48,7 @@ We believe in creating educational content that is:
 - **Comprehensive**: Provide complete coverage with clear explanations
 - **Actionable**: Include exercises, examples, and hands-on activities
 
-## 📝 Writing Guidelines
+## Content Writing Guidelines
 
 ### Content Structure
 
@@ -51,7 +88,7 @@ Follow this proven structure for technical articles:
 
 ### Writing Style
 
-#### DO ✅
+#### DO [PASS]
 - Write in clear, active voice
 - Use simple, direct sentences
 - Include specific, concrete examples
@@ -61,7 +98,7 @@ Follow this proven structure for technical articles:
 - Include code comments for complex examples
 - Provide context for why concepts matter
 
-#### DON'T ❌
+#### DON'T [FAIL]
 - Use jargon without definition
 - Assume prior knowledge without stating prerequisites
 - Write overly theoretical content without practical application
@@ -69,7 +106,7 @@ Follow this proven structure for technical articles:
 - Include code without explanation
 - Skip error handling in examples (unless intentionally teaching it)
 
-## 🔍 Technical Requirements
+## Analysis Technical Requirements
 
 ### Code Standards
 - **Complete examples**: All code should be runnable as-is
@@ -86,7 +123,7 @@ Follow this proven structure for technical articles:
 - **Platforms**: Note any platform-specific requirements
 - **Performance**: Include performance considerations where relevant
 
-## 📋 Review Process
+## Review Process
 
 ### Before Submitting
 1. **Self-review**: Read through your content using our checklist
@@ -110,9 +147,9 @@ Follow this proven structure for technical articles:
 Our reviewers evaluate contributions on:
 
 #### Technical Accuracy (40%)
-- All technical claims correct?
-- Code examples work as described?
-- Best practices followed?
+- Are all technical claims correct?
+- Do code examples work as described?
+- Are best practices followed?
 - Is the content up-to-date with current technologies?
 
 #### Educational Value (30%)
@@ -133,7 +170,7 @@ Our reviewers evaluate contributions on:
 - Prerequisites clearly stated?
 - Next steps provided?
 
-## 🎨 Style Guide
+## Style Style Guide
 
 ### Markdown Formatting
 - Use **ATX-style headers** (`# Header 1`, `## Header 2`)
@@ -151,10 +188,10 @@ Our reviewers evaluate contributions on:
 ### Visual Elements
 - **Diagrams**: Use Mermaid syntax for flowcharts and sequence diagrams
 - **Images**: Optimize for web, include alt text
-- **Tables**: Use Markdown tables for structured data
+- **Tables**: Use **Markdown** tables for structured data
 - **Callouts**: Use emojis and formatting for important information
 
-## 📚 Content Templates
+## Course Content Templates
 
 ### Tutorial Template
 ```markdown
@@ -186,7 +223,7 @@ You've learned [key concepts]. Next, try [related activity].
 TBD
 ```
 
-## 🚀 Getting Help
+## Quick Getting Help
 
 ### Resources for Writers
 - [Essay.app Guide](https://essay.app/guide/) - Modern technical writing principles
@@ -199,7 +236,7 @@ TBD
 - **Issues**: Tag maintainers for specific questions about content
 - **Review requests**: Ask for reviews in pull requests or discussions
 
-## 📊 Quality Checklist
+## Summary Quality Checklist
 
 Before submitting your contribution, ensure:
 
@@ -230,7 +267,7 @@ Before submitting your contribution, ensure:
 - [ ] Consistent with existing terminology and style
 - [ ] Builds upon previously covered topics
 
-## 🎉 Recognition
+## Success Recognition
 
 Contributors are recognized in:
 - **README.md** acknowledgments section
@@ -242,4 +279,4 @@ Contributors are recognized in:
 
 Thank you for helping make this course better for everyone! Your contributions help developers worldwide learn about LLM agents and build impactful solutions.
 
-**Still have questions?** Open an issue or start a discussion, and we'll be happy to help!
+**Still have questions?** [Open an issue](https://github.com/uz0/llm/issues/new) and we'll be happy to help!

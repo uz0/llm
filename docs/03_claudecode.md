@@ -1,4 +1,10 @@
-# 03_claudecode - Claude Code CLI & Sub-agents
+---
+layout: default
+title: "Claude Code CLI & Sub-agents"
+order: 3
+---
+
+# Claude Code CLI & Sub-agents
 
 Practical guide to using Claude Code CLI, sub-agent orchestration, and advanced workflows with hands-on examples and detailed breakdown of execution flow.
 
@@ -18,7 +24,7 @@ After completing this module, you will be able to:
 - Access to Claude API
 - Command-line interface familiarity
 
-## 📚 Module Content
+## Course Module Content
 
 ### Getting Started with Claude Code
 
@@ -49,16 +55,16 @@ The wizard will guide you through:
 - Full support for Claude Code, Cline, and 10+ top coding tools
 - Limited-time deal available
 
-🚀 **You've been invited to join the GLM Coding Plan!**
+Quick **You've been invited to join the GLM Coding Plan!**
 
-Subscribe now: https://z.ai/subscribe?ic=AT4ZFNNRCJ
+Subscribe now: [https://z.ai/subscribe?ic=AT4ZFNNRCJ](https://z.ai/subscribe?ic=AT4ZFNNRCJ)
 
 #### Step 2B: Complete Setup with Z.AI
 
 After subscribing to Z.AI:
 
 1. **Create API Key** in your Z.AI dashboard
-2. **Configure Claude Code** following: https://docs.z.ai/devpack/tool/claude
+2. **Configure Claude Code** following: [https://docs.z.ai/devpack/tool/claude](https://docs.z.ai/devpack/tool/claude)
 
 #### Step 3: Create Your First Project
 
@@ -209,7 +215,7 @@ Task(documentation, "Generate API documentation from OpenAPI spec")
 **Main Agent Process:**
 ```bash
 > Task(performance-analyzer, "Find performance issues in src/components/")
-⏺ Done (45 tool uses · 125.3k tokens · 2m 15s)
+> Done (45 tool uses • 125.3k tokens • 2m 15s)
 
 Results:
 - Large bundle size (2.3MB minified)
@@ -449,8 +455,8 @@ Read("src/config/database.ts")
 4. Use iterative refinement
 
 # Example:
-❌ "Analyze the code"
-✅ "Analyze src/auth/ for security vulnerabilities.
+[FAIL] "Analyze the code"
+[PASS] "Analyze src/auth/ for security vulnerabilities.
    Report: severity level, exact location, fix suggestions.
    Format: markdown table with columns: file, issue, severity, fix."
 ```
@@ -510,8 +516,8 @@ Ctrl+O          # Check context size
 
 **2. Use Imperative Instructions:**
 ```bash
-❌ "Improve the auth system"
-✅ "In src/auth/login.ts, add rate limiting to prevent brute force attacks.
+[FAIL] "Improve the auth system"
+[PASS] "In src/auth/login.ts, add rate limiting to prevent brute force attacks.
    Use Redis for storing attempt counts.
    Add 5 attempts per 15 minutes window.
    Return HTTP 429 when limit exceeded."
@@ -551,7 +557,7 @@ Task(researcher, "Look up latest Node.js security best practices")
 
 ---
 
-## 🛠️ Practical Exercises
+## Practice Practical Exercises
 
 ### Exercise 1: Your First Feature Implementation
 
@@ -610,7 +616,7 @@ Task(testing, "Find files lacking test coverage and suggest test cases")
 
 ---
 
-## 🏗️ Development Workflow
+## Build Development Workflow
 
 ### Recommended Workflow: Spec → PR → Review → Implementation
 
@@ -632,14 +638,12 @@ cat > specs/01-init.md << 'EOF'
 - API: [e.g., REST, GraphQL]
 
 ## Project Structure
-```
 src/
 ├── components/
 ├── services/
 ├── utils/
 ├── types/
 └── tests/
-```
 
 ## Development Rules
 - Use TypeScript strict mode
@@ -932,7 +936,7 @@ Shift+Tab
 
 ---
 
-## 📚 Training Recommendations
+## Course Training Recommendations
 
 ### Beginner Path (First Month)
 
@@ -999,7 +1003,7 @@ Shift+Tab
 
 ---
 
-## 📊 Key Takeaways
+## Summary Key Takeaways
 
 1. **Claude Code is a workflow tool** - think in terms of complete development processes
 2. **Spec-driven development** ensures consistency and quality

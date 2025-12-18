@@ -1,0 +1,80 @@
+# Site settings
+title: LLM Agents Workflow Course
+description: Public course materials about LLM agents workflow by Unity Zone Zero team
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://llm.uz0.dev" # the base hostname & protocol for your site
+
+# GitHub Pages configuration for /docs folder source
+# Make sure GitHub Pages settings are configured to use /docs folder as source
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# GitHub Pages specific settings
+lsi: false
+safe: true
+incremental: false
+
+# Sass configuration
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# Gist configuration
+gist:
+  noscript: false
+
+# Markdown processor configuration
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+    span:
+      line_numbers: false
+
+# Include CSS files
+include:
+  - _pages
+  - assets
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - LICENSE
+  - AGENTS.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
+  - README.md  # Skip README if it exists, use index.md instead
+  - .claude/
+  - .github/
+
+# Collections for organizing content
+collections:
+  docs:
+    output: true
+    permalink: /:name/
+
+# Default settings for collections
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+
+# Theme settings (GitHub Pages supported theme)
+theme: jekyll-theme-minimal
+

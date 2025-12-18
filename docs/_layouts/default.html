@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+
+    <!-- Security and Privacy Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <link rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "assets/css/theme.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "assets/css/dark-theme.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "assets/css/syntax.css" | relative_url }}">
+
+    <!-- Mermaid.js for diagram rendering (fixes issue #8) - Updated to v11.12.2 with SRI -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.2/dist/mermaid.min.js"
+            integrity="sha384-1ggI9FC3CkghppRD/XCR4aD+jp4DxwXlJIW0wxhyTLNKuiZEW3c4BwcjKXl0iVAJ"
+            crossorigin="anonymous">
+    </script>
+
+    <!-- Google Tag Manager (fixes issue #9) - Enhanced security implementation -->
+    <!-- Privacy notice: This site uses analytics for improvement. See PRIVACY.md for details. -->
+    <script>
+      // GTM with enhanced security measures
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+
+        // Security enhancements
+        j.async=true;
+        j.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        j.setAttribute('crossorigin', 'anonymous');
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+
+        // Error handling and fallback
+        j.onerror=function() {
+          console.warn('Google Tag Manager failed to load - analytics may be limited');
+          // Fallback: could implement alternative analytics here
+        };
+
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PMQLRD6K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) (fixes issue #9) - Proper GTM implementation -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMQLRD6K"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="site-container">
+      <!-- Left Sidebar Navigation -->
+      <aside class="sidebar" id="sidebar">
+        {% include sidebar_navigation.html %}
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+
+        <!-- Main Content -->
+        <section class="content">
+
+      <!-- Initialize Mermaid diagrams (fixes issue #8) - Updated for v11 compatibility -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof mermaid !== 'undefined') {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Initialize Mermaid with v11 configuration structure
+            mermaid.initialize({
+              startOnLoad: false, // We'll manually initialize to handle code blocks
+              theme: prefersDark ? 'dark' : 'default',
+              themeVariables: {
+                darkMode: prefersDark,
+                primaryColor: '#66b3ff',
+                primaryTextColor: prefersDark ? '#ffffff' : '#1a1a1a',
+                primaryBorderColor: '#66b3ff',
+                lineColor: '#888',
+                secondaryColor: '#ff9999',
+                background: prefersDark ? '#1a1a1a' : '#ffffff',
+                mainBkg: prefersDark ? '#2a2a2a' : '#ffffff',
+                secondBkg: prefersDark ? '#3a3a3a' : '#f5f5f5',
+                tertiaryColor: prefersDark ? '#4a4a4a' : '#e0e0e0'
+              },
+              flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+              },
+              sequence: {
+                useMaxWidth: true,
+                wrap: true,
+                actorFontFamily: 'arial',
+                messageFontFamily: 'arial',
+                noteFontFamily: 'arial'
+              },
+              securityLevel: 'strict', // Changed from 'loose' for security
+              logLevel: 1, // Suppress unnecessary logs
+              maxTextSize: 50000, // Prevent text size attacks
+              fontFamily: 'arial', // Safe font family
+              fontSize: 16 // Default safe font size
+            });
+
+            // Process Mermaid code blocks with error handling
+            function processMermaidBlocks() {
+              const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+
+              if (mermaidBlocks.length === 0) return;
+
+              mermaidBlocks.forEach((block) => {
+                const pre = block.parentElement;
+                const diagramId = 'mermaid-' + Math.random().toString(36).slice(2, 11);
+
+                // Create a div for the mermaid diagram
+                const diagramDiv = document.createElement('div');
+                diagramDiv.className = 'mermaid';
+                diagramDiv.id = diagramId;
+
+                // Sanitize and validate diagram content
+                const diagramContent = block.textContent.trim();
+                if (!diagramContent || diagramContent.length > 10000) {
+                  // Skip empty or overly large diagrams
+                  pre.innerHTML = '<p class="mermaid-error">Diagram too large or empty</p>';
+                  return;
+                }
+
+                diagramDiv.textContent = diagramContent;
+
+                // Add error handling
+                diagramDiv.onerror = function() {
+                  console.warn('Mermaid diagram failed to render:', diagramId);
+                  diagramDiv.innerHTML = '<p class="mermaid-error">Failed to render diagram</p>';
+                };
+
+                // Replace the pre block with the mermaid div
+                pre.parentNode.replaceChild(diagramDiv, pre);
+              });
+
+              // Run Mermaid after processing all blocks with error handling
+              try {
+                mermaid.run().catch((error) => {
+                  console.warn('Mermaid execution failed:', error);
+                  // Fallback: show original code blocks
+                  document.querySelectorAll('.mermaid-error').forEach((el) => {
+                    const parent = el.parentElement;
+                    if (parent) {
+                      const pre = document.createElement('pre');
+                      const code = document.createElement('code');
+                      code.className = 'language-mermaid';
+                      code.textContent = parent.textContent;
+                      pre.appendChild(code);
+                      parent.parentNode.replaceChild(pre, parent);
+                    }
+                  });
+                });
+              } catch (error) {
+                console.warn('Mermaid initialization failed:', error);
+              }
+            }
+
+            // Process blocks immediately
+            processMermaidBlocks();
+
+            // Handle theme changes for dynamic switching (v11 compatible)
+            if (window.matchMedia) {
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                mermaid.initialize({
+                  theme: e.matches ? 'dark' : 'default',
+                  themeVariables: {
+                    darkMode: e.matches,
+                    primaryTextColor: e.matches ? '#ffffff' : '#1a1a1a',
+                    background: e.matches ? '#1a1a1a' : '#ffffff',
+                    mainBkg: e.matches ? '#2a2a2a' : '#ffffff',
+                    secondBkg: e.matches ? '#3a3a3a' : '#f5f5f5',
+                    tertiaryColor: e.matches ? '#4a4a4a' : '#e0e0e0'
+                  }
+                });
+                // Re-process and run Mermaid for existing diagrams
+                processMermaidBlocks();
+              });
+            }
+          }
+        });
+      </script>
+
+        {{ content }}
+        </section>
+
+        <!-- Footer with simplified content -->
+        <footer class="site-footer">
+          <div class="footer-content">
+            <p><a href="https://github.com/uz0/llm/blob/main/LICENSE" target="_blank" rel="noopener">Unlicensed</a> ❤️ <a href="https://github.com/uz0" target="_blank" rel="noopener">Unity Zone Zero</a></p>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+
+    <!-- Smart Navigation Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeSmartNav();
+      });
+
+      function initializeSmartNav() {
+        // Highlight current page
+        highlightCurrentPage();
+
+        // Generate page navigation from headers
+        generatePageNavigation();
+      }
+
+      function initializeCollapsibleNav() {
+        const toggles = document.querySelectorAll('.section-toggle');
+
+        toggles.forEach(toggle => {
+          toggle.addEventListener('click', function() {
+            const section = this.getAttribute('data-section');
+            const list = document.getElementById(`nav-${section}`);
+            const icon = this.querySelector('.toggle-icon');
+
+            if (list) {
+              const isExpanded = list.style.display !== 'none';
+              list.style.display = isExpanded ? 'none' : 'block';
+              icon.textContent = isExpanded ? '▶' : '▼';
+
+              // Save state to localStorage
+              localStorage.setItem(`nav-${section}-collapsed`, isExpanded);
+            }
+          });
+
+          // Restore saved state
+          const section = toggle.getAttribute('data-section');
+          const isCollapsed = localStorage.getItem(`nav-${section}-collapsed`) === 'true';
+          const list = document.getElementById(`nav-${section}`);
+          const icon = toggle.querySelector('.toggle-icon');
+
+          if (isCollapsed && list) {
+            list.style.display = 'none';
+            icon.textContent = '▶';
+          }
+        });
+      }
+
+      function highlightCurrentPage() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-list a[data-page]');
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          const page = link.getAttribute('data-page');
+
+          if (href === currentPath ||
+              currentPath.includes(page) ||
+              currentPath.endsWith(page + '.html')) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      function generatePageNavigation() {
+        // Only generate on docs pages (not main page)
+        if (window.location.pathname === '/') return;
+
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        const pageNav = document.getElementById('page-nav');
+        const pageNavList = document.getElementById('nav-page');
+
+        if (headers.length > 2 && pageNav && pageNavList) {
+          pageNav.style.display = 'block';
+          pageNavList.innerHTML = '';
+
+          headers.forEach((header, index) => {
+            // Skip the main title (usually h1)
+            if (header.tagName === 'H1') return;
+
+            const id = header.id || `section-${index}`;
+            if (!header.id) {
+              header.id = id;
+            }
+
+            const li = document.createElement('li');
+            const level = parseInt(header.tagName.charAt(1));
+            const indent = (level - 2) * 12; // h2 = 0, h3 = 12px, etc.
+
+            li.innerHTML = `
+              <a href="#${id}" class="page-nav-link" style="padding-left: ${indent}px">
+                <span class="nav-icon">${getHeaderIcon(level)}</span>
+                ${header.textContent.trim()}
+              </a>
+            `;
+
+            pageNavList.appendChild(li);
+          });
+
+          // Add smooth scrolling
+          document.querySelectorAll('.page-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              const targetId = this.getAttribute('href').substring(1);
+              const targetElement = document.getElementById(targetId);
+
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+
+                // Update active state
+                document.querySelectorAll('.page-nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+              }
+            });
+          });
+        }
+      }
+
+      function getHeaderIcon(level) {
+        const icons = {
+          2: '-', // h2
+          3: '•', // h3
+          4: '◦', // h4
+          5: '▪',  // h5
+          6: '·'   // h6
+        };
+        return icons[level] || '•';
+      }
+
+          </script>
+  </body>
+</html>
