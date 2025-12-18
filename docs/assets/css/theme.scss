@@ -148,7 +148,6 @@
 }
 
 .course-title {
-  margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -301,34 +300,16 @@
   font-weight: 500;
 }
 
-/* Level-specific styling for section navigation */
-.level-h3 { padding-left: 1rem !important; }
-.level-h4 { padding-left: 2rem !important; }
-.level-h5 { padding-left: 2.5rem !important; }
-.level-h6 { padding-left: 3rem !important; }
-
-
-/* Legacy Current Chapter Navigation - maintained for compatibility */
-.current-chapter-nav {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.current-chapter-nav h4 {
-  color: #0366d6;
-  font-weight: 500;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
+/* Page navigation list with proper nesting using padding only */
 .page-nav-list a {
   font-size: 0.85rem;
   color: #586069;
-  padding: 0.25rem 1.5rem;
+  padding: 0.25rem;
   font-weight: 400;
   transition: all 0.2s ease;
   border-left: 2px solid transparent;
+  text-decoration: none;
+  display: block;
 }
 
 .page-nav-list a:hover {
@@ -345,8 +326,25 @@
   font-weight: 500;
 }
 
-.page-nav-list a:first-child {
-  padding-top: 1.5rem;
+/* Level-specific styling - only left padding changes, no icons */
+.page-nav-list .level-h3 a { padding-left: 1.5rem; }
+.page-nav-list .level-h4 a { padding-left: 2.5rem; }
+.page-nav-list .level-h5 a { padding-left: 3.5rem; }
+.page-nav-list .level-h6 a { padding-left: 4.5rem; }
+
+
+/* Legacy Current Chapter Navigation - maintained for compatibility */
+.current-chapter-nav {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.current-chapter-nav h4 {
+  color: #0366d6;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
 /* Legacy wrapper styles for backward compatibility */
@@ -958,8 +956,3 @@ a:hover, a:focus {
   }
 }
 
-/* Level-specific styling for section navigation */
-.level-h3 { padding-left: 1rem; }
-.level-h4 { padding-left: 2rem; }
-.level-h5 { padding-left: 2.5rem; }
-.level-h6 { padding-left: 3rem; }

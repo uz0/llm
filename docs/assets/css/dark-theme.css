@@ -269,7 +269,7 @@
 
   body .page-nav-list a {
     color: #8b949e;
-    padding: 0.25rem 1.5rem;
+    padding: 0.25rem;
   }
 
   body .page-nav-list a:hover {
@@ -282,10 +282,6 @@
     background-color: rgba(88, 166, 255, 0.15);
     color: #58a6ff;
     border-left-color: #58a6ff;
-  }
-
-  body .page-nav-list a:first-child {
-    padding-top: 1.5rem;
   }
 
   /* TOC (Table of Contents) */

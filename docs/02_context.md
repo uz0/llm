@@ -65,7 +65,7 @@ sequenceDiagram
 
 **1 token ≈ 4 characters** (for English text, approximate)
 
-```text
+```md
 English:  ~4 characters = 1 token
           1000 characters ≈ 250 tokens
 
@@ -99,39 +99,40 @@ Code:     ~3.5 characters = 1 token (more efficient due to symbols)
 
 ```mermaid
 sequenceDiagram
-    participant U as User
-    participant M as Main Agent
-    participant T as Tools
-    participant S as Sub-Agent (Plan)
+   participant U as User
+   participant M as Main Agent
+   participant T as Tools
+   participant S as Sub-Agent (Plan)
 
-    U->>M: analyse implementation details...
-    Note over M: Context: 50k tokens
+   U->>M: analyse implementation details...
+   Note over M: Context: 50k tokens
 
-    M->>T: Read PRP-003 document
-    T-->>M: 1132 lines returned
-    Note over M: Context: 65k tokens
+   M->>T: Read PRP-003 document
+   T-->>M: 1132 lines returned
+   Note over M: Context: 65k tokens
 
-    M->>M: Task is complex, spawn sub-agent
-    M->>S: Analyze TUI implementation
-    Note over S: Fresh context: 20k tokens
+   M->>M: Task is complex, spawn sub-agent
+   M->>S: Analyze TUI implementation
+   Note over S: Fresh context: 20k tokens
 
-    S->>T: Read src/tui/main.tsx
-    T-->>S: 8k tokens
-    S->>T: Read StatusBar.tsx
-    T-->>S: 3k tokens
-    S->>T: 18 more tool calls
-    T-->>S: 49k more tokens
-    Note over S: Context: 80k tokens
+   S->>T: Read src/tui/main.tsx
+   T-->>S: 8k tokens
+   S->>T: Read StatusBar.tsx
+   T-->>S: 3k tokens
+   S->>T: 18 more tool calls
+   T-->>S: 49k more tokens
+   Note over S: Context: 80k tokens
 
-    S->>S: Analyze all data
-    S-->>M: Return 500 token summary only
-    Note over M: Context: 65.5k not 145k!
+   S->>S: Analyze all data
+   S-->>M: Return 500 token summary only
+   Note over M: Context: 65.5k not 145k!
 
-    M->>U: Present plan based on summary
-    Note over U: Sees descriptive plan
+   M->>U: Present plan based on summary
+   Note over U: Sees descriptive plan
 
-    Note over U,M: Problem: Original prompt too vague<br/>Should have specified imperative plan<br/>with exact file paths and signatures
-    end
+   rect
+   Note over U,M: Problem: Original prompt too vague
+   end
 ```
 #### Real Example Breakdown
 
@@ -146,7 +147,7 @@ Let's trace through an actual Claude Code interaction:
 #### Step 1: Initial Response + Hidden Command
 
 #### What you see:
-```text
+```md
 > I'll analyze the implementation details for PRP-003 TUI implementation.
   Let me first read the PRP document and then examine the current codebase
   to understand what has been implemented.
@@ -157,7 +158,7 @@ Let's trace through an actual Claude Code interaction:
 - Generates hidden tool call: `Read(PRPs/PRP-003-tui-implementation.md)`
 
 #### Context at this point:
-```text
+```md
 [System Prompt: ~50k tokens]
 [User Message: "analyse implementation..." ~15 tokens]
 [Assistant Thinking: "I need to read PRP first..." ~50 tokens]
@@ -168,7 +169,7 @@ Total: ~50,065 tokens
 #### Step 2: Tool Execution
 
 #### What you see:
-```text
+```md
 > Read(PRPs/PRP-003-tui-implementation.md)
   ⎿  Read 1132 lines
 ```
@@ -195,7 +196,7 @@ Total: ~65,065 tokens
 #### Step 3: Agent Decides to Use Sub-Agent
 
 #### What you see:
-```text
+```md
 > Now I'll use the Task tool with a Plan subagent to analyze the TUI
   implementation details comprehensively.
 ```
@@ -214,7 +215,7 @@ Total: ~65,065 tokens
 #### Step 4: Sub-Agent Execution
 
 #### What you see:
-```text
+```md
 > Plan(Analyze TUI implementation progress)
   ⎿  Done (20 tool uses • 80.1k tokens • 1m 4s)
 ```
@@ -284,12 +285,6 @@ graph TD
     B -->|Read 10 files| C["125k tokens"]
     C -->|Tool executions| D["180k tokens"]
     D -->|More work| E["195k tokens<br/>WARNING LLM degrading"]
-
-    style A fill:#e1ffe1
-    style B fill:#fff4e1
-    style C fill:#ffe1e1
-    style D fill:#ff9999
-    style E fill:#ff6666
 ```
 
 #### Solutions

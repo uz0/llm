@@ -67,20 +67,20 @@ LLMs are **statistical pattern matchers**, not reasoning entities. They:
    - **Attention mechanism limitations**: Information can be "lost" in the middle of very long contexts
 
 ```mermaid
-flowchart TD
-    A["POST /v1/messages<br/>Request to LLM"] --> B["System Prompt<br/>★★★ HIGHEST PRIORITY<br/>Fixed instructions about role"]
+---
+config:
+   theme: 'forest'
+---
+treemap
+"POST /v1/messages"
+   "System Prompt": 30
+   "User Prompt older": 10
+   "User Prompt newer"
+      "First tokens": 25
+      "Another tokens": 10
+      "**HIGHLIGHTED** tokens": 15
 
-    B --> C["Messages Array<br/>★★ MEDIUM-HIGH PRIORITY"]
-
-    C --> D["Recent Messages<br/>★★★ Higher Weight<br/>Last 5-10 exchanges"]
-    C --> E["Older Messages<br/>★ Lower Weight<br/>May be summarized"]
-
-    D --> F["Single Message Content<br/>Within each message:"]
-    E --> F
-
-    F --> G["Top of Message<br/>★★★ HIGHEST ATTENTION<br/>First sentences/paragraphs"]
-    F --> H["Middle of Message<br/>★★ MEDIUM ATTENTION<br/>Can be 'lost' in long contexts"]
-    F --> I["Bottom of Message<br/>★ LOWER ATTENTION<br/>May be deprioritized"]
+classDef important fill:#f96,stroke:#333,stroke-width:2px;
 ```
 
 Think of LLM as a powerful auto-complete that breaks your sentences into pieces not based on human-meaning, but on statistics and priorities, then tries to "fill in" the gaps with "text in another language."
@@ -120,7 +120,7 @@ These examples show common mistakes where humans **omit critical information** t
 
 #### [FAIL] BAD PROMPT #1: Missing Context About Project Structure
 
-```text
+```md
 BAD: "The login isn't working, please fix it"
 ```
 
@@ -142,7 +142,7 @@ BAD: "The login isn't working, please fix it"
 
 #### [PASS] GOOD PROMPT #1: All Context Provided
 
-```text
+```md
 GOOD: "Fix the authentication error in src/components/LoginForm.tsx.
 
 Error: 'Cannot read property userId of undefined' at line 47
@@ -174,7 +174,7 @@ Do not modify:
 
 #### [FAIL] BAD PROMPT #2: Vague Requirements
 
-```text
+```md
 BAD: "Add validation to the form"
 ```
 
@@ -195,7 +195,7 @@ BAD: "Add validation to the form"
 
 #### [PASS] GOOD PROMPT #2: Specific Requirements
 
-```text
+```md
 GOOD: "Add validation to the user registration form in src/pages/Register.tsx.
 
 Fields to validate:
@@ -239,7 +239,7 @@ Do not modify:
 
 #### [FAIL] BAD PROMPT #3: Missing Error Context
 
-```text
+```md
 BAD: "The API call is failing, help me debug it"
 ```
 
@@ -260,7 +260,7 @@ BAD: "The API call is failing, help me debug it"
 
 #### [PASS] GOOD PROMPT #3: Complete Debugging Context
 
-```text
+```md
 GOOD: "Debug the failing API call in src/services/userService.ts, function updateUserProfile (line 67).
 
 Error details:

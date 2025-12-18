@@ -638,14 +638,12 @@ cat > specs/01-init.md << 'EOF'
 - API: [e.g., REST, GraphQL]
 
 ## Project Structure
-```
 src/
 ├── components/
 ├── services/
 ├── utils/
 ├── types/
 └── tests/
-```
 
 ## Development Rules
 - Use TypeScript strict mode

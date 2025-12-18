@@ -279,4 +279,4 @@ Contributors are recognized in:
 
 Thank you for helping make this course better for everyone! Your contributions help developers worldwide learn about LLM agents and build impactful solutions.
 
-**Still have questions?** Open an issue or start a discussion, and we'll be happy to help!
+**Still have questions?** [Open an issue](https://github.com/uz0/llm/issues/new) and we'll be happy to help!
