@@ -8,18 +8,45 @@
     <title>{{ site.title }}</title>
     <meta name="description" content="{{ site.description }}">
 
+    <!-- Security and Privacy Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
     <link rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "assets/css/theme.css" | relative_url }}">
 
-    <!-- Mermaid.js for diagram rendering (fixes issue #8) - Updated to v11.12.2 -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.2/dist/mermaid.min.js"></script>
+    <!-- Mermaid.js for diagram rendering (fixes issue #8) - Updated to v11.12.2 with SRI -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.2/dist/mermaid.min.js"
+            integrity="sha384-1ggI9FC3CkghppRD/XCR4aD+jp4DxwXlJIW0wxhyTLNKuiZEW3c4BwcjKXl0iVAJ"
+            crossorigin="anonymous">
+    </script>
 
-    <!-- Google Tag Manager (fixes issue #9) - Proper GTM implementation -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PMQLRD6K');</script>
+    <!-- Google Tag Manager (fixes issue #9) - Enhanced security implementation -->
+    <!-- Privacy notice: This site uses analytics for improvement. See PRIVACY.md for details. -->
+    <script>
+      // GTM with enhanced security measures
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+
+        // Security enhancements
+        j.async=true;
+        j.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        j.setAttribute('crossorigin', 'anonymous');
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+
+        // Error handling and fallback
+        j.onerror=function() {
+          console.warn('Google Tag Manager failed to load - analytics may be limited');
+          // Fallback: could implement alternative analytics here
+        };
+
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PMQLRD6K');
+    </script>
     <!-- End Google Tag Manager -->
 
     <!--[if lt IE 9]>
@@ -80,13 +107,18 @@
                 messageFontFamily: 'arial',
                 noteFontFamily: 'arial'
               },
-              securityLevel: 'loose',
-              logLevel: 1 // Suppress unnecessary logs
+              securityLevel: 'strict', // Changed from 'loose' for security
+              logLevel: 1, // Suppress unnecessary logs
+              maxTextSize: 50000, // Prevent text size attacks
+              fontFamily: 'arial', // Safe font family
+              fontSize: 16 // Default safe font size
             });
 
-            // Process Mermaid code blocks
+            // Process Mermaid code blocks with error handling
             function processMermaidBlocks() {
               const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+
+              if (mermaidBlocks.length === 0) return;
 
               mermaidBlocks.forEach((block) => {
                 const pre = block.parentElement;
@@ -96,14 +128,47 @@
                 const diagramDiv = document.createElement('div');
                 diagramDiv.className = 'mermaid';
                 diagramDiv.id = diagramId;
-                diagramDiv.textContent = block.textContent;
+
+                // Sanitize and validate diagram content
+                const diagramContent = block.textContent.trim();
+                if (!diagramContent || diagramContent.length > 10000) {
+                  // Skip empty or overly large diagrams
+                  pre.innerHTML = '<p class="mermaid-error">Diagram too large or empty</p>';
+                  return;
+                }
+
+                diagramDiv.textContent = diagramContent;
+
+                // Add error handling
+                diagramDiv.onerror = function() {
+                  console.warn('Mermaid diagram failed to render:', diagramId);
+                  diagramDiv.innerHTML = '<p class="mermaid-error">Failed to render diagram</p>';
+                };
 
                 // Replace the pre block with the mermaid div
                 pre.parentNode.replaceChild(diagramDiv, pre);
               });
 
-              // Run Mermaid after processing all blocks
-              mermaid.run();
+              // Run Mermaid after processing all blocks with error handling
+              try {
+                mermaid.run().catch((error) => {
+                  console.warn('Mermaid execution failed:', error);
+                  // Fallback: show original code blocks
+                  document.querySelectorAll('.mermaid-error').forEach((el) => {
+                    const parent = el.parentElement;
+                    if (parent) {
+                      const pre = document.createElement('pre');
+                      const code = document.createElement('code');
+                      code.className = 'language-mermaid';
+                      code.textContent = parent.textContent;
+                      pre.appendChild(code);
+                      parent.parentNode.replaceChild(pre, parent);
+                    }
+                  });
+                });
+              } catch (error) {
+                console.warn('Mermaid initialization failed:', error);
+              }
             }
 
             // Process blocks immediately

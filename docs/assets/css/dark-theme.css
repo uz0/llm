@@ -1,123 +1,360 @@
-/* Dark theme compatibility fixes */
+/* Enhanced Dark theme with proper specificity - No !important rules */
+
+/* Dark theme base styles - using high specificity to override */
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a !important;
-    color: #e0e0e0 !important;
+  /* Body and base text - high specificity override */
+  html body {
+    background-color: #0d1117;
+    color: #c9d1d9;
   }
 
-  .container, .content, .main-content {
-    background-color: #2a2a2a !important;
-    color: #e0e0e0 !important;
+  /* Main content areas */
+  body .site-container {
+    background: #0d1117;
   }
 
-  /* Fix code blocks */
-  pre, code {
-    background-color: #333 !important;
-    color: #f8f8f2 !important;
-    border: 1px solid #555 !important;
+  body .content,
+  body .main-content,
+  body .container {
+    background-color: transparent;
+    color: #c9d1d9;
   }
 
-  pre {
-    background-color: #282c34 !important;
+  /* Sidebar dark theme */
+  body .sidebar {
+    background: #161b22;
+    border-right-color: #30363d;
   }
 
-  /* Fix headings */
-  h1, h2, h3, h4, h5, h6 {
-    color: #ffffff !important;
+  body .main-content-full {
+    background: #0d1117;
   }
 
-  /* Fix links */
-  a {
-    color: #66b3ff !important;
+  /* Header and footer */
+  body .site-header {
+    background: #0d1117;
+    border-bottom-color: #21262d;
   }
 
-  a:hover {
-    color: #99ccff !important;
+  body .page-sections-nav {
+    background: #161b22;
+    border-color: #30363d;
   }
 
-  /* Fix blockquotes */
-  blockquote {
-    background-color: #3a3a3a !important;
-    border-left: 4px solid #66b3ff !important;
-    color: #d0d0d0 !important;
+  body .site-footer {
+    background: #161b22;
+    border-top-color: #30363d;
   }
 
-  /* Fix tables */
-  table {
-    background-color: #2a2a2a !important;
-    color: #e0e0e0 !important;
+  /* Footer content */
+  body .footer-left p {
+    color: #8b949e;
   }
 
-  th, td {
-    border: 1px solid #555 !important;
+  body .social-link {
+    color: #58a6ff;
   }
 
-  th {
-    background-color: #3a3a3a !important;
+  body .social-link:hover {
+    background-color: #21262d;
   }
 
-  /* Fix mermaid diagrams if rendered */
-  .mermaid {
-    background-color: #2a2a2a !important;
+  /* Navigation dark theme */
+  body .course-title h3 a {
+    color: #f0f6fc;
   }
 
-  /* Fix images in dark mode */
-  img {
+  body .course-title h3 a:hover {
+    color: #58a6ff;
+  }
+
+  body .nav-section-title {
+    color: #8b949e;
+  }
+
+  body .nav-link {
+    color: #58a6ff;
+  }
+
+  body .nav-link:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: #f0f6fc;
+  }
+
+  body .nav-link.active {
+    background-color: rgba(88, 166, 255, 0.15);
+    color: white;
+    border-left-color: #58a6ff;
+  }
+
+  body .nav-link.section-link {
+    color: #8b949e;
+  }
+
+  body .nav-link.section-link:hover {
+    background-color: rgba(88, 166, 255, 0.05);
+    color: #58a6ff;
+  }
+
+  body .nav-link.section-link.active {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.1);
+  }
+
+  /* Smart navigation dark theme */
+  body .smart-nav {
+    background: #161b22;
+    border-color: #30363d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  body .nav-header {
+    background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+  }
+
+  body .nav-header h3 {
+    color: #f0f6fc;
+  }
+
+  body .section-header h4 {
+    color: #f0f6fc;
+  }
+
+  body .nav-toggle,
+  body .section-toggle {
+    color: #8b949e;
+  }
+
+  body .nav-toggle:hover,
+  body .section-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f6fc;
+  }
+
+  /* Breadcrumb navigation */
+  body .breadcrumb-home,
+  body .breadcrumb-link {
+    color: #58a6ff;
+  }
+
+  body .breadcrumb-current {
+    color: #f0f6fc;
+  }
+
+  body .breadcrumb-separator {
+    color: #8b949e;
+  }
+
+  /* Typography and content */
+  body h1, body h2, body h3, body h4, body h5, body h6 {
+    color: #f0f6fc;
+  }
+
+  body strong {
+    color: white;
+  }
+
+  body a {
+    color: #58a6ff;
+  }
+
+  body a:hover {
+    color: #79c0ff;
+  }
+
+  /* Code blocks - use higher specificity */
+  body pre,
+  body code {
+    background-color: #161b22;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+  }
+
+  body code {
+    background-color: rgba(110, 118, 129, 0.4);
+    padding: 0.2em 0.4em;
+  }
+
+  body pre {
+    background-color: #0d1117;
+    border-color: #30363d;
+  }
+
+  body pre > code {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  /* Blockquotes */
+  body blockquote {
+    background-color: rgba(110, 118, 129, 0.1);
+    border-left-color: #58a6ff;
+    color: #8b949e;
+  }
+
+  /* Tables */
+  body table {
+    background-color: #161b22;
+    color: #c9d1d9;
+  }
+
+  body table th,
+  body table td {
+    border-color: #30363d;
+  }
+
+  body table th {
+    background-color: #21262d;
+  }
+
+  /* Page navigation */
+  body .page-nav-link {
+    color: #8b949e;
+  }
+
+  body .page-nav-link:hover {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.1);
+  }
+
+  body .page-nav-link.active {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.15);
+    font-weight: 500;
+  }
+
+  /* Course info sections */
+  body .page-info {
+    background-color: rgba(88, 166, 255, 0.1);
+    border-left-color: #58a6ff;
+  }
+
+  body .page-title {
+    color: #f0f6fc;
+  }
+
+  body .page-description {
+    color: #8b949e;
+  }
+
+  body .page-order {
+    color: #58a6ff;
+  }
+
+  /* Course navigation */
+  body .course-nav h3 {
+    color: #f0f6fc;
+    border-bottom-color: #30363d;
+  }
+
+  body .nav-list a {
+    color: #58a6ff;
+  }
+
+  body .nav-list a:hover {
+    background-color: #21262d;
+    color: #f0f6fc;
+  }
+
+  body .nav-list a.active {
+    background-color: #58a6ff;
+    color: white;
+  }
+
+  /* Current chapter navigation */
+  body .current-chapter-nav h4 {
+    color: #58a6ff;
+  }
+
+  body .page-nav-list a {
+    color: #8b949e;
+  }
+
+  body .page-nav-list a:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+  }
+
+  body .page-nav-list a.active {
+    background-color: rgba(88, 166, 255, 0.15);
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+  }
+
+  /* TOC (Table of Contents) */
+  body .toc {
+    background-color: rgba(88, 166, 255, 0.05);
+  }
+
+  body .toc h3 {
+    color: #f0f6fc;
+  }
+
+  /* Images in dark mode */
+  body img {
     opacity: 0.9;
+    transition: opacity 0.2s ease;
   }
 
-  img:hover {
+  body img:hover {
     opacity: 1;
   }
-}
 
-/* GitHub Pages specific dark mode overrides */
-@media (prefers-color-scheme: dark) {
-  .site-header, .site-footer {
-    background-color: #24292e !important;
-    color: #e0e0e0 !important;
+  /* Mermaid diagrams dark theme */
+  body .mermaid {
+    background-color: transparent;
   }
 
-  .pagination a {
-    background-color: #3a3a3a !important;
-    color: #66b3ff !important;
+  body .mermaid svg {
+    background-color: #161b22;
   }
 
-  .pagination a:hover {
-    background-color: #4a4a4a !important;
-  }
-}
-
-/* Ensure mermaid diagrams are readable in both themes */
-.mermaid {
-  background-color: transparent !important;
-}
-
-/* Dark theme overrides for mermaid */
-@media (prefers-color-scheme: dark) {
-  .mermaid svg {
-    background-color: #2a2a2a !important;
+  body .mermaid .label text,
+  body .mermaid .cluster-label text,
+  body .mermaid .titleText text {
+    fill: #c9d1d9;
   }
 
-  .mermaid .label text,
-  .mermaid .cluster-label text,
-  .mermaid .titleText text {
-    fill: #e0e0e0 !important;
+  body .mermaid .node rect,
+  body .mermaid .node circle,
+  body .mermaid .node ellipse {
+    fill: #21262d;
+    stroke: #58a6ff;
   }
 
-  .mermaid .node rect,
-  .mermaid .node circle,
-  .mermaid .node ellipse {
-    fill: #3a3a3a !important;
-    stroke: #66b3ff !important;
+  body .mermaid .edgePath path {
+    stroke: #8b949e;
   }
 
-  .mermaid .edgePath path {
-    stroke: #888 !important;
+  body .mermaid .edgeLabel {
+    background-color: #161b22;
+    color: #c9d1d9;
   }
 
-  .mermaid .edgeLabel {
-    background-color: #2a2a2a !important;
-    color: #e0e0e0 !important;
+  /* Mermaid error styling */
+  body .mermaid-error {
+    color: #f85149;
+    background-color: rgba(248, 81, 73, 0.1);
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #f85149;
+  }
+
+  /* Scrollbar styling for dark theme */
+  @media screen and (max-width: 768px) {
+    body .nav-content::-webkit-scrollbar-thumb {
+      background: #586069;
+      border-radius: 2px;
+    }
+
+    body .nav-content::-webkit-scrollbar-thumb:hover {
+      background: #8b949e;
+    }
+
+    body .nav-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
 }

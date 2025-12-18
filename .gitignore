@@ -3,6 +3,7 @@ _site/
 .sass-cache/
 .jekyll-cache/
 build/
+docs/vendor/
 
 # Ruby gems
 Gemfile
@@ -15,9 +16,6 @@ Thumbs.db
 # IDE files
 .vscode/
 .idea/
-
-# Build script (keep only in root)
-docs/build.sh
 
 # Node modules (if any)
 node_modules/
