@@ -9,7 +9,6 @@ url: "https://llm.uz0.dev" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
 plugins:
   - jekyll-feed
   - jekyll-sitemap

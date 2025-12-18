@@ -24,7 +24,7 @@ Practical guide to using Claude Code CLI, sub-agent orchestration, and advanced 
 ### [04. Basic Agent Patterns](04_baseagents.md) 🚧 IN DEVELOPMENT
 Introduction to fundamental agent patterns including Chain of Thought, tools integration, RAG basics, and building your first agent.
 
-### [B1. Advanced Agent Implementation](05_agents_advanced.md)
+### [B1. Advanced Agent Implementation](B1_agents_architecture.md)
 Build production-ready agent systems with advanced error handling, recovery mechanisms, and performance optimization techniques. **PDF Version**: [Download the complete analysis (PDF)](B1_agents_architecture.pdf)
 
 ## Usage Rights
