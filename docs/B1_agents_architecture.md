@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Advanced Agent Architectures"
-order: 5
+order: 99
 ---
 
 # Advanced Agent Architectures

@@ -1,42 +1,45 @@
 ---
 layout: default
-title: "Context Management"
+title: "Context Windows and Sub-Agents"
 order: 2
 ---
 
-# Context Management
+# Context Windows and Sub-Agents
 
-Master context window management, token economics, and optimization strategies for working efficiently with LLMs, with specific focus on Claude API and implementation details.
+Level up from basic prompts to understanding context - the BIG prompt that agents use to gather tool results, previous conversation, project files (like CLAUDE.md), and handle sub-agents for complex work without polluting the main conversation.
 
 ## Learning Objectives
 
 After completing this module, you will be able to:
-- Understand how context windows work and their limitations
-- Optimize token usage for cost and performance
-- Manage context effectively in long conversations
-- Implement context compression and summarization strategies
-- Monitor and control context pollution
-- Understand Claude API-specific implementation details
+- Understand context as "BIG prompt" = system + history + tool results + project files
+- Recognize context pollution and how it degrades LLM performance
+- Use sub-agents (like Plan mode) to isolate work and keep main context clean
+- Understand that this is just HTTP requests to GPT-like APIs, not magic
+- Debug context overflow issues and manage token costs effectively
 
 ## Prerequisites
 
 - Completion of [01_prompt](01_prompt.md)
-- Basic understanding of LLM APIs
+- You understand prompts are structured input, not conversation
+- Ready to learn about context management complexity
 
 ## Course Module Content
 
 ### Understanding Context Windows
 
-#### What is Context?
+#### What is Context? (The BIG Prompt)
 
-**Context** is everything the LLM "sees" when generating a response:
+**Context = The BIG prompt that includes:**
 
-1. **System Prompt**: Core instructions about the LLM's role and capabilities (typically 30-70k tokens)
-2. **Your Messages**: All messages you've sent in the conversation
-3. **LLM Responses**: All previous responses from the LLM
-4. **Hidden Summaries**: Compacted versions of old exchanges to save space
-5. **Tool Results**: Output from tools the agent has used (file reads, bash commands, web searches)
-6. **Memory/Project Files**: Project-specific instructions if configured
+1. **System Prompt**: Claude Code's internal instructions (50k+ tokens - fixed overhead)
+2. **CLAUDE.md**: Your project-specific rules and patterns (if you created one)
+3. **Your Messages**: All prompts you've sent this session
+4. **Agent Responses**: All previous LLM outputs
+5. **Tool Results**: File reads, bash outputs, search results, API calls
+6. **Hidden Summaries**: Compacted old messages when approaching token limit
+7. **Sub-Agent Results**: Summaries returned from specialized agents
+
+**Think of it this way:** Every tool call adds its output to your context window. Read a 10k file? +10k tokens. Run a command? +500 tokens. This accumulates until the LLM performance degrades or costs explode.
 
 #### Context Overflow Management
 
@@ -158,7 +161,7 @@ Let's trace through an actual Claude Code interaction:
 - Generates hidden tool call: `Read(PRPs/PRP-003-tui-implementation.md)`
 
 #### Context at this point:
-```md
+```yml
 [System Prompt: ~50k tokens]
 [User Message: "analyse implementation..." ~15 tokens]
 [Assistant Thinking: "I need to read PRP first..." ~50 tokens]
@@ -180,7 +183,7 @@ Total: ~50,065 tokens
 - Claude now has the full requirements document
 
 #### Context now:
-```
+```yml
 [System Prompt: ~50k tokens]
 [User Message: ~15 tokens]
 [Assistant Thinking: ~50 tokens]
@@ -338,7 +341,7 @@ Format: markdown table.
 #### 2. Avoid Repeated File Reads
 
 [FAIL] Bad (16k tokens wasted):
-```
+```yml
 Message 1: "Analyze auth.ts"
 → Agent reads auth.ts (8k tokens added to context)
 
@@ -350,7 +353,7 @@ Message 3: "What about the types?"
 ```
 
 [PASS] Good (12k tokens total):
-```
+```bash
 "Analyze auth.ts and auth-types.ts together. Check:
 1. Logic correctness
 2. Error handling completeness
@@ -365,9 +368,9 @@ Return findings as numbered list."
 #### 3. Use Artifacts for Large Outputs
 
 When asking for large code generation:
-```
-> Generate a complete REST API with CRUD operations for User, Post, Comment models.
-  Include TypeScript types, validation, error handling, tests.
+```bash
+"Generate a complete REST API with CRUD operations for User, Post, Comment models. 
+Include TypeScript types, validation, error handling, tests."
 
 Claude creates artifact (separate context)
 → Your conversation context stays small (~1k tokens for request)
@@ -427,7 +430,7 @@ Claude creates artifact (separate context)
    - Define success criteria clearly
 
 2. Use imperative instructions:
-   ```
+   ```yml
    [FAIL] "Improve the authentication code"
    [PASS] "In src/auth/login.ts, add email validation before password check.
       Do not modify password hashing logic.
@@ -463,7 +466,7 @@ Claude creates artifact (separate context)
 
 **Solutions**:
 1. Ask agent to search documentation:
-   ```
+   ```yml
    [FAIL] "How do I use the Anthropic API?"
    [PASS] "Search the official Anthropic documentation for API authentication.
       Provide the current recommended approach."
@@ -515,7 +518,7 @@ Claude creates artifact (separate context)
    ```
 
 2. Write prompts in English:
-   ```
+   ```yml
    [FAIL] Russian: 1000 chars = ~400 tokens = $0.0012 input (Sonnet)
    [PASS] English: 1000 chars = ~250 tokens = $0.00075 input (Sonnet)
    Savings: 37.5% per request
@@ -541,8 +544,8 @@ Claude creates artifact (separate context)
    ```
 
 5. Choose right model:
-   ```
-   Simple tasks (linting, formatting): Haiku ($0.80/1M in)
+   ```bash
+   Simple tasks, linting, formatting: Haiku ($0.80/1M in)
    Code generation: Sonnet ($3/1M in)
    Complex architecture: Opus ($15/1M in)
 
@@ -593,7 +596,7 @@ Claude creates artifact (separate context)
    ```
 
 4. Parallelize with sub-agents:
-   ```
+   ```yml
    [FAIL] Serial (slow):
    Read file → Analyze → Fix → Test → Commit
    Total: 60 seconds
@@ -640,7 +643,7 @@ After task:
 
 #### Simple Q&A Session (Claude Sonnet 4.5)
 
-```
+```yml
 Scenario: 10 back-and-forth exchanges
 
 User inputs: 10 messages × 50 tokens each = 500 tokens

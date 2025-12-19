@@ -1,28 +1,27 @@
 ---
 layout: default
-title: "Claude Code CLI & Sub-agents"
+title: "Claude Code CLI Practical Guide"
 order: 3
 ---
 
-# Claude Code CLI & Sub-agents
+# Claude Code CLI Practical Guide
 
-Practical guide to using Claude Code CLI, sub-agent orchestration, and advanced workflows with hands-on examples and detailed breakdown of execution flow.
+Stop using UI-based coding assistants. Switch to Claude Code CLI for better workflow control. Learn to write specs once, execute repeatedly, and manage branches/PRs like a pro.
 
 ## Learning Objectives
 
 After completing this module, you will be able to:
-- Install and configure Claude Code CLI
-- Use sub-agents for complex task decomposition
-- Implement advanced workflow patterns
-- Debug and optimize agent-based systems
-- Practice with real-world development scenarios
-- Create detailed implementation specifications
+- Install Claude Code CLI and choose your pricing plan
+- Write detailed specs in specs/feature-name.md and execute them with @
+- Clear context efficiently and handle dangerous permissions
+- Use Plan mode for complex tasks without surprises
+- Follow the workflow: spec → execute → branch → commit → PR → web review
 
 ## Prerequisites
 
 - Completion of [02_context](02_context.md)
-- Access to Claude API
-- Command-line interface familiarity
+- You understand context windows and pollution
+- Ready to switch from Cursor/Windsurf to CLI workflow
 
 ## Course Module Content
 
@@ -55,9 +54,7 @@ The wizard will guide you through:
 - Full support for Claude Code, Cline, and 10+ top coding tools
 - Limited-time deal available
 
-Quick **You've been invited to join the GLM Coding Plan!**
-
-Subscribe now: [https://z.ai/subscribe?ic=AT4ZFNNRCJ](https://z.ai/subscribe?ic=AT4ZFNNRCJ)
+Use my referral link: [https://z.ai/subscribe?ic=AT4ZFNNRCJ](https://z.ai/subscribe?ic=AT4ZFNNRCJ)
 
 #### Step 2B: Complete Setup with Z.AI
 
@@ -130,7 +127,7 @@ sequenceDiagram
 #### Step-by-Step Execution Analysis
 
 **Initial Request Processing:**
-```
+```yml
 USER: "> Add user authentication with JWT tokens"
 
 CLAUDE CODE INTERNAL PROCESS:
@@ -142,7 +139,7 @@ CLAUDE CODE INTERNAL PROCESS:
 ```
 
 **Context Assembly:**
-```
+```yml
 [SYSTEM PROMPT: Claude Code instructions (~50k tokens]
 [CONVERSATION HISTORY: Previous messages (~5k tokens)]
 [CURRENT REQUEST: "Add user authentication..." (~50 tokens)]
@@ -151,7 +148,7 @@ CLAUDE CODE INTERNAL PROCESS:
 ```
 
 **Tool Execution Phase:**
-```
+```yml
 TOOL CALL 1: Read package.json
 → Dependencies: express, jsonwebtoken, bcryptjs already present
 → Project type: Node.js/TypeScript API
@@ -166,7 +163,7 @@ TOOL CALL 3: Read src/auth/ files
 ```
 
 **Sub-Agent Decision:**
-```
+```yml
 IF (task involves multiple files AND existing code found)
 THEN spawn sub-agent for:
 - Code analysis
@@ -226,7 +223,7 @@ Results:
 ```
 
 **What actually happened in sub-agent:**
-```
+```yml
 PERFORMANCE ANALYZER CONTEXT:
 [Specialized prompt: "You are a React performance expert..." (3k tokens)]
 [Task: "Find performance issues in src/components/" (80 tokens)]
@@ -616,11 +613,61 @@ Task(testing, "Find files lacking test coverage and suggest test cases")
 
 ---
 
-## Build Development Workflow
+## The Workflow: Why CLI Beats UI Every Time
 
-### Recommended Workflow: Spec → PR → Review → Implementation
+### The Problem with UI-based Assistants (Cursor/Windsurf)
 
-This workflow ensures consistent, high-quality development with Claude Code:
+1. **No persistent specs** - You retype instructions every time
+2. **Context pollution** - Chat history gets messy and expensive
+3. **No version control** - Can't track changes to your prompts
+4. **Hard to iterate** - Editing previous prompts is clunky
+5. **Team collaboration nightmare** - Sharing "chat sessions" doesn't work
+
+### The CLI Workflow: Write Once, Execute Many Times
+
+```bash
+# 1. Write your spec once
+cat > specs/user-auth.md << 'EOF'
+# User Authentication Feature
+
+## Description
+Add JWT authentication to the Node.js Express API.
+
+## Implementation Steps
+1. Create authController with register/login endpoints
+2. Add JWT middleware for protected routes
+3. Update user model with password hashing
+4. Add validation and error handling
+5. Write tests for all auth flows
+
+## Success Criteria
+- Users can register and login
+- JWT tokens work for protected routes
+- Passwords are properly hashed
+EOF
+
+# 2. Execute it (multiple times if needed)
+claude
+> @specs/user-auth.md
+
+# 3. If something is WRONG - don't ask for edits!
+# Update the spec instead
+echo "4. Add rate limiting to login endpoint" >> specs/user-auth.md
+
+# 4. Execute again with updated spec
+claude
+> @specs/user-auth.md
+
+# 5. Repeat until done in one or several short prompt-execution cycles
+```
+
+### Why This Works Better
+
+- **Specs are code** - Version control, diff, review like regular code
+- **Iterative refinement** - Fix the spec, not the chat history
+- **Clean context** - Each execution starts fresh
+- **Team collaboration** - Everyone uses the same specs
+- **Reproducible** - Same spec = same results
 
 #### 1. Create Project Specification (`specs/01-init.md`)
 
