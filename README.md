@@ -2,49 +2,34 @@
 
 Public course materials about LLM agents by Unity Zone Zero team
 
-## Quick Quick Start
+## 🚀 Start Learning
 
-**Start with** [HOME](docs/README.md) to get course info.
+**Start here** → [**docs/README.md**](docs/README.md)
 
 ## 🤝 Contributing
 
-**After reading have questions?** Open an issue or start a discussion, and we'll be happy to help!
+**Want to help improve the course?** See our [**Contributing Guidelines**](CONTRIBUTING.md)
 
-We welcome contributions from the community! This is a living educational resource, and your input helps improve it.
+**Have questions or found issues?** [**Create an Issue**](https://github.com/uz0/llm/issues)
 
-Please read our **[Contributing Guidelines](CONTRIBUTING.md)** before making any contributions. The guidelines include:
+## 🌐 Community
 
-- How to write high-quality technical articles
-- Content standards and review process
-- Code review requirements
-- Style guidelines and formatting requirements
-
-All contributions must undergo review and meet our quality standards before being merged.
+- **Unity Zone Zero**: [uz0.dev](https://uz0.dev/)
+- **Course Author**: [dcversus.wtf](https://dcversus.wtf/)
 
 ## 📄 License
 
-This course material is **completely free** and open for everyone to use, modify, and contribute to. All course materials are released under the [Unlicense](LICENSE) - a public domain dedication.
+This course is released under the **Unlicense**, meaning:
 
-### Freedom and Openness
-- **Free to use**: All educational content is freely accessible
-- **Open for contribution**: Community contributions are welcome and encouraged
-- **Freedom to fork**: Anyone can fork and adapt the materials
-- **No restrictions**: Use for personal, educational, or commercial purposes
+- **Free to use** - No cost or licensing restrictions
+- **Free to modify** - Adapt the content for your needs
+- **Free to distribute** - Share with others
+- **Commercial use allowed** - Use in professional projects
+- **No attribution required** - Though appreciated!
 
-### Contributing with Love
-This course is maintained with [love] by the **Unity Zone Zero team**. We believe in open education and community-driven knowledge sharing.
+## Community
 
-### Usage Rights
-You are free to:
-- Use the materials for learning and teaching
-- Modify and adapt for your needs
-- Share with others
-- Use in commercial projects
-- Contribute improvements back to the community
-- Fork and create your own versions
+This course is actively maintained and improved by the Unity Zone Zero team. Contributions, feedback, and suggestions are welcome!
 
-No attribution is required, though credit to the original project is appreciated when building upon these materials.
-
-## 🙏 Acknowledgments
-
-- **Sergei Parfenov** - Agent architecture analysis and comparative testing
+- [Contribution Guidelines](CONTRIBUTING.md)
+- [Report Issues](https://github.com/uz0/llm/issues)
