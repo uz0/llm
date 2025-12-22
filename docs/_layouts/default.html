@@ -23,33 +23,16 @@
             crossorigin="anonymous">
     </script>
 
-    <!-- Google Tag Manager (fixes issue #9) - Enhanced security implementation -->
-    <!-- Privacy notice: This site uses analytics for improvement. See PRIVACY.md for details. -->
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSF0GQ3HP6"></script>
     <script>
-      // GTM with enhanced security measures
-      (function(w,d,s,l,i){
-        w[l]=w[l]||[];
-        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),
-        dl=l!='dataLayer'?'&l='+l:'';
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        // Security enhancements
-        j.async=true;
-        j.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-        j.setAttribute('crossorigin', 'anonymous');
-        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-
-        // Error handling and fallback
-        j.onerror=function() {
-          console.warn('Google Tag Manager failed to load - analytics may be limited');
-          // Fallback: could implement alternative analytics here
-        };
-
-        f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-PMQLRD6K');
+      gtag('config', 'G-XSF0GQ3HP6');
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- End Google Analytics -->
 
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
