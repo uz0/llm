@@ -2,6 +2,17 @@
 
 Thank you for your interest in contributing to this educational resource! This guide will help you understand how to write high-quality technical articles and contribute effectively to the course materials.
 
+## Workflow
+
+1. **Create new document**: Create your content as `/docs/XX_name.md` (use 2-digit numbering for ordering)
+2. **Upload artifacts**: Add related files (PDFs, images, datasets) to `/docs/` directory as needed
+3. **Update navigation**: Add your content to `/docs/README.md` in the `## Materials` section:
+   ```markdown
+   ### [XX. Title](XX_name.md)
+   Brief description of what readers will learn and key topics covered.
+   ```
+4. **Submit PR**: Create pull request for review
+
 ## Goals: Contribution Philosophy
 
 We believe in creating educational content that is:
